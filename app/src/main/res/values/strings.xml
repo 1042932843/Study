@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">U学</string>
+    <string name="edit_profile">编辑资料</string>
+    <string name="mine">我的</string>
+    <string name="homework">作业</string>
+    <string name="motto">没有那么多为什么</string>
+    <string name="classifier_ge">个</string>
+    <string name="classifier_point">分</string>
+    <string name="classifier_times">次</string>
+    <string name="learn">学过课程</string>
+    <string name="logout">退出登录</string>
+    <string name="online_consulting">在线咨询</string>
+    <string name="simulation_evaluation">模拟测试</string>
+    <string name="exercises">课后练习</string>
+    <string name="expmore"><![CDATA[查看更多  >]]></string>
+    <string name="newsc">最新课程</string>
+    <string name="youlove">猜你喜欢</string>
+    <string name="hotc">热门课程</string>
+    <string name="xianxiu">平台先修课</string>
+    <string name="xueli">学历提升</string>
+
+    <string name="msg_camera_framework_bug">相机被占用或没有相机权限，请检查</string>
+    <string name="button_ok">退出</string>
+    <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
+    <string name="viewfinderview_status_text2">即可自动扫描</string>
+</resources>

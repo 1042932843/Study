@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:orientation="vertical"
+   >
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_160"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_launcher" />
+
+
+            <!--  <View style="@style/Divider"
+                  android:layout_marginLeft="40dp"
+                  android:layout_marginRight="40dp"/>-->
+
+            <EditText
+                android:id="@+id/idcard"
+                android:layout_marginTop="15dp"
+                style="@style/EditText"
+                android:layout_height="@dimen/dp_48"
+                android:background="#ffffffff"
+                android:digits="0123456789abcdefghigjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@."
+                android:gravity="center"
+                android:hint="手机/用户名/邮箱"
+                android:maxLength="18"
+                android:padding="@dimen/dp_8" />
+
+            <!--   <View style="@style/Divider"
+                   android:layout_marginLeft="40dp"
+                   android:layout_marginRight="40dp"
+                   />-->
+
+            <EditText
+                android:id="@+id/pwd"
+                style="@style/EditText"
+                android:layout_height="@dimen/dp_48"
+                android:layout_marginTop="15dp"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:digits="0123456789abcdefghigjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@"
+                android:hint="输入6~32位密码"
+                android:inputType="textPassword"
+                android:maxLength="32"
+                android:padding="@dimen/dp_8" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/dp_16"
+                android:weightSum="1">
+               <!-- <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_6"
+                    android:padding="@dimen/dp_8"
+                    android:background="@drawable/btn_theme_solid_bg"
+                    android:gravity="center"
+                    android:text="注册"
+                    android:textColor="@android:color/white"
+                    />
+-->
+                <TextView
+                    android:id="@+id/login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_theme_solid_bg"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:text="登 录"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="忘记密码"
+               android:textColor="@color/textcolor"
+               android:gravity="center"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

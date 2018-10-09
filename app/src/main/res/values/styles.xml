@@ -1,0 +1,44 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--colorPrimary 对应ToolBar的颜色-->
+        <item name="colorPrimary">@android:color/transparent</item>
+        <!--colorPrimaryDark对应状态栏的颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <!--colorAccent 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色。-->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!--窗口的颜色-->
+        <item name="android:windowBackground">@android:color/white</item>
+        <!--窗口的切换动画<item name="android:windowAnimationStyle">@style/fade</item>-->
+    </style>
+    <style name="EditText">
+        <item name="android:background">@drawable/edit_text_background</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColorHint">#ff999999</item>
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">50dp</item>
+        <item name="android:layout_marginLeft">50dp</item>
+    </style>
+    <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/photo_choose_bg</item>
+    </style>
+
+    <style name="main_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
+    </style>
+
+    <style name="AppTheme.AppCompat.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowMinWidthMinor">40%</item>
+        <item name="android:windowMinWidthMajor">40%</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--外围是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>
