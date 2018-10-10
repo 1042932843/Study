@@ -1,4 +1,4 @@
-# UStudy
+# DuskyStudy
 新版开发
 
 一个视频学习平台
