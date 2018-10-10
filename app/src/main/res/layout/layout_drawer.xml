@@ -136,6 +136,17 @@
                     android:textSize="@dimen/sp_14"
 
                     />
+                <TextView
+                    android:id="@+id/defTname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:hint=""
+                    android:textSize="@dimen/sp_10"
+                    android:layout_marginStart="@dimen/dp_32"
+                    android:singleLine="true"
+                    />
 
 
             </LinearLayout>
@@ -164,7 +175,17 @@
                     android:textSize="@dimen/sp_14"
 
                     />
-
+                <TextView
+                    android:id="@+id/nowTname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:hint=""
+                    android:textSize="@dimen/sp_10"
+                    android:layout_marginStart="@dimen/dp_32"
+                    android:singleLine="true"
+                    />
 
             </LinearLayout>
 

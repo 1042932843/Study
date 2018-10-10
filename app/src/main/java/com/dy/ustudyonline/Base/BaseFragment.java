@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -67,6 +69,7 @@ public abstract class BaseFragment extends RxFragment implements View.OnTouchLis
   public void onDestroyView() {
     super.onDestroyView();
     bind.unbind();
+    EventBus.getDefault().unregister(this);
   }
 
 

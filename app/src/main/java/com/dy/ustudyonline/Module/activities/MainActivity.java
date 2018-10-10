@@ -2,6 +2,7 @@ package com.dy.ustudyonline.Module.activities;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -18,9 +20,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bumptech.glide.Glide;
@@ -67,8 +71,16 @@ import static com.dy.ustudyonline.Base.DuskyApp.optionsRoundedCircle;
 
 
 public class MainActivity extends BaseActivity {
+    String nowTName="";//当前站点
+    String defTName="";//默认站点
+    @BindView(R.id.nowTname)
+    TextView now;
+    @BindView(R.id.defTname)
+    TextView def;
+
     protected ProgressDialog pdialog;
     public static final String openDrawer = "drawer";
+    public static final String refreshData = "refresh";
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
@@ -86,14 +98,122 @@ public class MainActivity extends BaseActivity {
     public void gopwdSet(){
         startActivity(new Intent(MainActivity.this,PwResetActivity.class));
     }
+    String[] site,sitedef;
+    @OnClick(R.id.change)
+    public void nowTerrace(){
+        if(site==null||site.length==0){
+            ToastUtil.ShortToast("未获取到站点，如非网络问题，请尝试刷新或者重启app");
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setTitle("选择一个站点[当前平台:"+nowTName+"]");
+        //    指定下拉列表的显示数据
+        //    设置一个下拉的列表选择项
+        builder.setItems(site, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                doChange(which);
+            }
+        });
+        builder.show();
+    }
+
+    @SuppressLint("CheckResult")
+    private void doChange(int which) {
+        pdialog = new ProgressDialog(MainActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
+        pdialog.setMessage("切换中...");
+        pdialog.show();
+        RetrofitHelper.getMainAPI()
+                .changeNow(PreferenceUtil.getStringPRIVATE("id",""),which)
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            nowTName=site[which];
+                            now.setText(nowTName);
+
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                    pdialog.dismiss();
+                }, throwable -> {
+                    pdialog.dismiss();
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
+    }
+
     @OnClick(R.id.def)
     public void defTerrace(){
-        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+        if(sitedef==null||sitedef.length==0){
+            ToastUtil.ShortToast("未获取到站点，如非网络问题，请尝试刷新或者重启app");
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setTitle("选择一个站点[当前默认:"+defTName+"]");
+        //    指定下拉列表的显示数据
+        //    设置一个下拉的列表选择项
+        builder.setItems(sitedef, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                doSet(which);
+            }
+        });
+        builder.show();
     }
-    @OnClick(R.id.change)
-    public void changeTerrace(){
-        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+
+    @SuppressLint("CheckResult")
+    private void doSet(int which) {
+        pdialog = new ProgressDialog(MainActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
+        pdialog.setMessage("设置中...");
+        pdialog.show();
+        RetrofitHelper.getMainAPI()
+                .setDef(PreferenceUtil.getStringPRIVATE("id",""),which)
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            defTName=sitedef[which];
+                            def.setText(defTName);
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                    pdialog.dismiss();
+                }, throwable -> {
+                    pdialog.dismiss();
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
     }
+
+    private void LoadData() {
+        loadChangeSite();
+        loadDefSite();
+        EventBus.getDefault().post(refreshData);
+    }
+
 
     @BindView(R.id.drawer)
     DrawerLayout drawer;
@@ -200,6 +320,7 @@ public class MainActivity extends BaseActivity {
         update();
         initBottomNavigationBar();
         initFragments();
+        LoadData();
         ver.setHint("版本号 "+DuskyApp.getInstance().getAppVersionName(this));
         name.setText(PreferenceUtil.getStringPRIVATE("realName","未登录"));
         if(!TextUtils.isEmpty(PreferenceUtil.getStringPRIVATE("imageUrl",""))){
@@ -208,6 +329,87 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @SuppressLint("CheckResult")
+    private void loadChangeSite() {
+        pdialog = new ProgressDialog(this, ProgressDialog.THEME_HOLO_LIGHT);
+        pdialog.setMessage("站点加载中...");
+        pdialog.show();
+        RetrofitHelper.getMainAPI()
+                .changeTList(PreferenceUtil.getStringPRIVATE("id",""))
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            //{"message":"请选择要切换的平台","state":"0000","resultInfo":{"nowTName":"珠海市民终身学习网","tNameList":[{"tName":"珠海市民终身学习网"},{"tName":"珠海社区大学香洲区社区学院"},{"tName":"南屏科技园青年学习网"},{"tName":"珠海电大网络课堂"},{"tName":"珠海电大电子商务专科网络课堂"},{"tName":"幼儿园家长学校"},{"tName":"珠海市企业学院"},{"tName":"鼎义互联网络商学院"},{"tName":"珠海电大会计学（专科）在线学习平台"},{"tName":"珠海电大会计学（本科）在线学习平台"},{"tName":"珠海电大工商管理（专科）在线学习平台"},{"tName":"珠海电大工商管理（本科）在线学习平台"},{"tName":"珠海电大物流管理（专科）在线学习平台"},{"tName":"珠海电大物流管理（本科）在线学习平台"},{"tName":"珠海电大金融学（专科）在线学习平台"},{"tName":"珠海电大金融学（本科）在线学习平台"},{"tName":"珠海电大物业管理（专科）在线学习平台"},{"tName":"珠海电大人力资源管理（专科）在线学习平台"},{"tName":"珠海电大行政管理（专科）在线学习平台"},{"tName":"珠海电大行政管理（本科）在线学习平台"},{"tName":"珠海电大社会工作（专科）在线学习平台"},{"tName":"珠海电大社会工作（本科）在线学习平台"},{"tName":"珠海电大法学（专科）在线学习平台"},{"tName":"珠海电大法学（本科）在线学习平台"},{"tName":"珠海电大计算机网络（专科）在线学习平台"},{"tName":"珠海电大英语（本科）在线学习平台"},{"tName":"珠海电大英语（专科）在线学习平台"},{"tName":"珠海电大学前教育（专科）在线学习平台"},{"tName":"珠海电大旅游管理（专科）在线学习平台"},{"tName":"珠海电大学前教育（本科）在线学习平台"},{"tName":"珠海电大农村行政管理（专科）在线学习平台"},{"tName":"资源平台"},{"tName":"购买资源平台"},{"tName":"自建资源平台"},{"tName":"珠海电大数字媒体设计（专科）在线学习平台"},{"tName":"珠海电大计算机信息管理（专科）在线学习平台"},{"tName":"珠海电大教职工培训网"},{"tName":"珠海社区大学金湾区社区学院"},{"tName":"珠海社区大学斗门区社区学院"},{"tName":"终身学习网平台"}]}}
+                            JSONObject json=JSON.parseObject(apiMsg.getResultInfo()) ;
+                            nowTName=json.getString("nowTName");
+                            now.setHint(nowTName);
+                            JSONArray array=json.getJSONArray("tNameList");//这什么JB数据结构啊，放Array里面了又
+                            site=new String[array.size()];
+                            int size=array.size();
+                            for (int i=0;i<size;i++){
+                                JSONObject ti= (JSONObject) array.get(i);
+                                site[i]= ti.getString("tName");
+                        }
+
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                    pdialog.dismiss();
+                }, throwable -> {
+                    pdialog.dismiss();
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
+
+    }
+    @SuppressLint("CheckResult")
+    private void loadDefSite() {
+        RetrofitHelper.getMainAPI()
+                .utList(PreferenceUtil.getStringPRIVATE("id",""))
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            //{"message":"请选择要切换的平台","state":"0000","resultInfo":{"nowTName":"珠海市民终身学习网","tNameList":[{"tName":"珠海市民终身学习网"},{"tName":"珠海社区大学香洲区社区学院"},{"tName":"南屏科技园青年学习网"},{"tName":"珠海电大网络课堂"},{"tName":"珠海电大电子商务专科网络课堂"},{"tName":"幼儿园家长学校"},{"tName":"珠海市企业学院"},{"tName":"鼎义互联网络商学院"},{"tName":"珠海电大会计学（专科）在线学习平台"},{"tName":"珠海电大会计学（本科）在线学习平台"},{"tName":"珠海电大工商管理（专科）在线学习平台"},{"tName":"珠海电大工商管理（本科）在线学习平台"},{"tName":"珠海电大物流管理（专科）在线学习平台"},{"tName":"珠海电大物流管理（本科）在线学习平台"},{"tName":"珠海电大金融学（专科）在线学习平台"},{"tName":"珠海电大金融学（本科）在线学习平台"},{"tName":"珠海电大物业管理（专科）在线学习平台"},{"tName":"珠海电大人力资源管理（专科）在线学习平台"},{"tName":"珠海电大行政管理（专科）在线学习平台"},{"tName":"珠海电大行政管理（本科）在线学习平台"},{"tName":"珠海电大社会工作（专科）在线学习平台"},{"tName":"珠海电大社会工作（本科）在线学习平台"},{"tName":"珠海电大法学（专科）在线学习平台"},{"tName":"珠海电大法学（本科）在线学习平台"},{"tName":"珠海电大计算机网络（专科）在线学习平台"},{"tName":"珠海电大英语（本科）在线学习平台"},{"tName":"珠海电大英语（专科）在线学习平台"},{"tName":"珠海电大学前教育（专科）在线学习平台"},{"tName":"珠海电大旅游管理（专科）在线学习平台"},{"tName":"珠海电大学前教育（本科）在线学习平台"},{"tName":"珠海电大农村行政管理（专科）在线学习平台"},{"tName":"资源平台"},{"tName":"购买资源平台"},{"tName":"自建资源平台"},{"tName":"珠海电大数字媒体设计（专科）在线学习平台"},{"tName":"珠海电大计算机信息管理（专科）在线学习平台"},{"tName":"珠海电大教职工培训网"},{"tName":"珠海社区大学金湾区社区学院"},{"tName":"珠海社区大学斗门区社区学院"},{"tName":"终身学习网平台"}]}}
+                            JSONObject json=JSON.parseObject(apiMsg.getResultInfo()) ;
+                            defTName=json.getString("nowTName");
+                            def.setHint(defTName);
+                            JSONArray array=json.getJSONArray("tNameList");//这什么JB数据结构啊，放Array里面了又
+                            sitedef=new String[array.size()];
+                            int size=array.size();
+                            for (int i=0;i<size;i++){
+                                JSONObject ti= (JSONObject) array.get(i);
+                                sitedef[i]= ti.getString("tName");
+                            }
+
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                    pdialog.dismiss();
+                }, throwable -> {
+                    pdialog.dismiss();
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
+
+    }
 
     private void initFragments() {
         List<String> titles = new ArrayList<>();

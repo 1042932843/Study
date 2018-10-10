@@ -34,12 +34,16 @@ import com.dy.ustudyonline.Utils.ToastUtil;
 import com.tmall.ultraviewpager.UltraViewPager;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.dy.ustudyonline.Module.activities.MainActivity.refreshData;
 
 /**
  * Name: HomePageTab1Fragment
@@ -115,6 +119,12 @@ public class HomePageTab1Fragment extends BaseFragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
 
     @Override
     public int getLayoutResId() {
@@ -135,6 +145,15 @@ public class HomePageTab1Fragment extends BaseFragment {
         initBanner();
         initModule();
         initRecyclerView();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(String cmd) {
+        switch (cmd) {
+            case refreshData:
+
+                break;
+        }
     }
 
     private void initModule() {
