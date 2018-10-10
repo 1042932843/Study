@@ -54,16 +54,16 @@
             >
 
             <LinearLayout
-                android:id="@+id/xtgg"
+                android:id="@+id/zhsz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center|left"
-                >
+                android:gravity="center|left">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <ImageView
 
                         android:layout_width="wrap_content"
@@ -85,13 +85,13 @@
 
 
             </LinearLayout>
+
             <LinearLayout
-                android:id="@+id/rz"
+                android:id="@+id/pwdset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center|left"
-                >
+                android:gravity="center|left">
 
                 <ImageView
 
@@ -114,12 +114,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fppush"
+                android:id="@+id/def"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center|left"
-                >
+                android:gravity="center|left">
 
                 <ImageView
 
@@ -142,7 +141,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/wdjl"
+                android:id="@+id/change"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -165,7 +164,6 @@
                     android:textSize="@dimen/sp_14"
 
                     />
-
 
 
             </LinearLayout>

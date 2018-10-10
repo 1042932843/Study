@@ -37,6 +37,7 @@ import com.dy.ustudyonline.Module.fragment.HomePageTab2Fragment;
 import com.dy.ustudyonline.Module.fragment.HomePageTab3Fragment;
 import com.dy.ustudyonline.Module.fragment.HomePageTab4Fragment;
 import com.dy.ustudyonline.Module.fragment.HomePageTab5Fragment;
+import com.dy.ustudyonline.Net.ApiConstants;
 import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.CommonUtil;
 import com.dy.ustudyonline.Utils.PgyUpdateManagerListener;
@@ -76,6 +77,24 @@ public class MainActivity extends BaseActivity {
     List<File> files=new ArrayList<>();
     public static final int RESULT_CODE_FP = 1042;
     ArrayList<ImageItem> images = null;
+
+    @OnClick(R.id.zhsz)
+    public void goAccountSet(){
+        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+    }
+    @OnClick(R.id.pwdset)
+    public void gopwdSet(){
+        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+    }
+    @OnClick(R.id.def)
+    public void defTerrace(){
+        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+    }
+    @OnClick(R.id.change)
+    public void changeTerrace(){
+        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+    }
+
     @BindView(R.id.drawer)
     DrawerLayout drawer;
 
@@ -184,7 +203,7 @@ public class MainActivity extends BaseActivity {
         ver.setHint("版本号 "+DuskyApp.getInstance().getAppVersionName(this));
         name.setText(PreferenceUtil.getStringPRIVATE("realName","未登录"));
         if(!TextUtils.isEmpty(PreferenceUtil.getStringPRIVATE("imageUrl",""))){
-            Glide.with(MainActivity.this).load(PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
+            Glide.with(MainActivity.this).load(ApiConstants.Base_URL+PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
         }
 
     }
@@ -329,4 +348,5 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+
 }

@@ -2,6 +2,7 @@ package com.dy.ustudyonline.Net;
 
 
 import com.dy.ustudyonline.Base.DuskyApp;
+import com.dy.ustudyonline.Net.API.AccountSetService;
 import com.dy.ustudyonline.Net.API.LoginRegisterService;
 import com.dy.ustudyonline.Net.API.homePageTab1Service;
 import com.dy.ustudyonline.Utils.CommonUtil;
@@ -42,7 +43,9 @@ public class RetrofitHelper {
   public static homePageTab1Service gethomePageTab1API() {
     return createApi(homePageTab1Service.class, ApiConstants.Base_URL);
   }
-
+  public static AccountSetService getAccountSetAPI() {
+    return createApi(AccountSetService.class, ApiConstants.Base_URL);
+  }
 
   /**
    * 根据传入的baseUrl，和api创建retrofit
