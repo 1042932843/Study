@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
     }
     @OnClick(R.id.pwdset)
     public void gopwdSet(){
-        startActivity(new Intent(MainActivity.this,AccountSetActivity.class));
+        startActivity(new Intent(MainActivity.this,PwResetActivity.class));
     }
     @OnClick(R.id.def)
     public void defTerrace(){

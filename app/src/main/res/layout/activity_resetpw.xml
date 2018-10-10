@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+    <include
+        android:id="@+id/layout_bar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/layout_bar">
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:hint="成功修改密码后需要重新登录"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                >
+                <TextView
+                    android:id="@+id/oldt"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="旧密码"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/textcolor"/>
+
+                <EditText
+                    android:id="@+id/pwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/oldt"
+                    android:layout_toRightOf="@+id/oldt"
+                    android:textSize="@dimen/sp_14"
+                    android:background="@null"
+                    android:hint="请输入旧密码"
+                    android:paddingLeft="@dimen/dp_24"
+                    android:inputType="textPassword"
+                    android:maxLength="18"
+                    android:singleLine="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/background"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48">
+                <TextView
+                    android:id="@+id/newt"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新密码"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/textcolor"/>
+                <EditText
+                    android:id="@+id/pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/newt"
+                    android:layout_toRightOf="@+id/newt"
+                    android:textSize="@dimen/sp_14"
+                    android:background="@null"
+                    android:hint="请输入新密码"
+                    android:paddingLeft="@dimen/dp_24"
+                    android:inputType="textPassword"
+                    android:maxLength="18"
+                    android:singleLine="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/background"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48">
+                <TextView
+                    android:id="@+id/suret"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确认密码"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/textcolor"/>
+                <EditText
+                    android:id="@+id/pws"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/suret"
+                    android:layout_toRightOf="@+id/suret"
+                    android:textSize="@dimen/sp_14"
+                    android:background="@null"
+                    android:hint="请确认新密码"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:inputType="textPassword"
+                    android:maxLength="18"
+                    android:singleLine="true" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tip"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:text=""
+            android:textColor="@color/red"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

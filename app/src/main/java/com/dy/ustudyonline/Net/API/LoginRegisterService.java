@@ -21,10 +21,10 @@ public interface LoginRegisterService {
     Observable<ResponseBody> login(@Field("userName") String account,
                                    @Field("passWord") String password);
 
-    @POST("updateUser")
+    @POST("appOrdinaryUser/updateUserPwd.xhtml")
     @FormUrlEncoded
-    Observable<ResponseBody> reset(@Field("id") String id,
-                                   @Field("oldpassword") String oldpassword,
-                                   @Field("newpassword") String newpassword);
+    Observable<ResponseBody> reset(@Field("userId") String id,
+                                   @Field("userPwd") String oldpassword,
+                                   @Field("userPwd1") String newpassword);
 
 }
