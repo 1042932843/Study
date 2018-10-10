@@ -158,7 +158,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
-        if(DuskyApp.getInstance().isLogged()){
+        if(!DuskyApp.getInstance().isLogged()){
             CommonUtil.goLogin(this);
         }
     }
