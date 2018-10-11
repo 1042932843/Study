@@ -19,7 +19,7 @@ public interface homePageTab1Service {
     @POST("appOrdinaryUser/toIndex.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> indexall (@Field("userId") String userId,
-                                   @Field("deviceType") String deviceType);
+                                   @Field("deviceType") String deviceType);//deviceType 1==ios 2==android
 
     @POST("appOrdinaryUser/uploadPicture.xhtml")
     @FormUrlEncoded

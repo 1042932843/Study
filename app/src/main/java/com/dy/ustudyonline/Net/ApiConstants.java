@@ -9,7 +9,7 @@ package com.dy.ustudyonline.Net;
  */
 
 public interface ApiConstants {
-       String Base_URL= "http://61.143.38.10:9088/subpfv32/";
+       String Base_URL= "http://119.146.222.170:9082/subpfv32/";
 }
 
        /**

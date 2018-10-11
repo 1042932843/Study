@@ -58,7 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center|left">
+                android:gravity="center|left"
+                android:background="@drawable/touch_bg">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -91,7 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center|left">
+                android:gravity="center|left"
+                android:background="@drawable/touch_bg">
 
                 <ImageView
 
@@ -118,7 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center|left">
+                android:gravity="center|left"
+                android:background="@drawable/touch_bg">
 
                 <ImageView
 
@@ -156,7 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center|left"
-                android:visibility="visible">
+                android:visibility="visible"
+                android:background="@drawable/touch_bg">
 
                 <ImageView
 
@@ -201,6 +205,7 @@
                 android:gravity="center|left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg"
                 >
 
 

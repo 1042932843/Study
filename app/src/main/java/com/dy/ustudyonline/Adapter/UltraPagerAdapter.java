@@ -11,7 +11,9 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.dy.studyonline.R;
+import com.dy.ustudyonline.Module.entity.Ad;
 import com.dy.ustudyonline.Module.entity.Banner;
+import com.dy.ustudyonline.Net.ApiConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +24,26 @@ import java.util.List;
  * @DESCRIPTION:
  */
 public class UltraPagerAdapter extends PagerAdapter {
-    List<Banner> banners =new ArrayList<>();
+    List<Ad> banners =new ArrayList<>();
     private UltraPagerAdapter.OnBannerItemClickListener onBannerItemClickListener;
     Context context;
     // 监听事件
     public interface OnBannerItemClickListener {
         void onItemClick(int position);
     }
-    public UltraPagerAdapter(List<Banner> banners, Context context) {
+    public UltraPagerAdapter(List<Ad> banners, Context context) {
         this.banners.addAll(banners);
         this.context=context;
+    }
 
+    public void notifyData(List<Ad> banners){
+        this.banners.clear();
+        this.banners.addAll(banners);
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return banners.size();
     }
 
     @Override
@@ -52,7 +58,7 @@ public class UltraPagerAdapter extends PagerAdapter {
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         //Glide.with(context).load(banners.get(position).getImageUrl()).into(imageView);
-        Glide.with(context).load(R.drawable.banner).into(imageView);
+        Glide.with(context).load(ApiConstants.Base_URL+banners.get(position).getImageUrl()).into(imageView);
         container.addView(imageView);
 //        linearLayout.getLayoutParams().width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, container.getContext().getResources().getDisplayMetrics());
 //        linearLayout.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 400, container.getContext().getResources().getDisplayMetrics());

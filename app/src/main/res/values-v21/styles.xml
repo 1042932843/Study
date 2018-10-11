@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RippleColorWhite">
+        <item name="android:colorControlHighlight">@android:color/white</item>
+    </style>
+    <style name="RippleColorPrimary">
+        <item name="android:colorControlHighlight">@android:color/white</item>
+    </style>
+</resources>

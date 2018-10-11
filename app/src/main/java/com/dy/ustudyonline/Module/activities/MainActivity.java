@@ -138,8 +138,9 @@ public class MainActivity extends BaseActivity {
                         case "0000":
                             ToastUtil.ShortToast(apiMsg.getMessage());
                             nowTName=site[which];
-                            now.setText(nowTName);
-
+                            now.setHint(nowTName);
+                            openDrawer();
+                            EventBus.getDefault().post(refreshData);
                             break;
                         case "-1":
                         case "-2":
@@ -193,7 +194,7 @@ public class MainActivity extends BaseActivity {
                         case "0000":
                             ToastUtil.ShortToast(apiMsg.getMessage());
                             defTName=sitedef[which];
-                            def.setText(defTName);
+                            def.setHint(defTName);
                             break;
                         case "-1":
                         case "-2":
@@ -211,7 +212,6 @@ public class MainActivity extends BaseActivity {
     private void LoadData() {
         loadChangeSite();
         loadDefSite();
-        EventBus.getDefault().post(refreshData);
     }
 
 

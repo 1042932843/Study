@@ -16,6 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginLeft="@dimen/dp_16"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:theme="@style/RippleColorWhite"
         />
 
     <TextView
@@ -37,7 +39,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginRight="@dimen/dp_16"/>
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:theme="@style/RippleColorWhite"/>
 
 
     <TextView
@@ -48,5 +52,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginRight="@dimen/dp_16"/>
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:theme="@style/RippleColorWhite"/>
 </android.support.constraint.ConstraintLayout>

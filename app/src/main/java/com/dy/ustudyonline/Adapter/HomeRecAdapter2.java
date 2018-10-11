@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dy.studyonline.R;
+import com.dy.ustudyonline.Module.entity.DataTab1Item;
 import com.dy.ustudyonline.Module.entity.HomeRecItem1;
 import com.dy.ustudyonline.Module.entity.HomeRecItem2;
 
@@ -20,18 +21,13 @@ import java.util.List;
  */
 public class HomeRecAdapter2 extends RecyclerView.Adapter<HomeRecAdapter2.ViewHolder>{
 
-    private List<HomeRecItem2> home;
-    private Context context;
+    private List<DataTab1Item> home;
 
-    public HomeRecAdapter2(List<HomeRecItem2> home, Context context) {
+    public HomeRecAdapter2(List<DataTab1Item> home) {
         this.home = home;
-        this.context=context;
     }
 
-    public void updateData(List<HomeRecItem2> home) {
-        this.home.addAll(home);
-        notifyDataSetChanged();
-    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,11 +40,11 @@ public class HomeRecAdapter2 extends RecyclerView.Adapter<HomeRecAdapter2.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        /*if(home==null||home.get(position)==null){
+        if(home==null||home.get(position)==null){
             return;
-        }*/
+        }
         // 绑定数据
-        holder.name.setText("你要了解的100个心理知识");
+        holder.name.setText(home.get(position).getCourseName());
 
         //单独对应类型的设置事件
         if( onItemClickListener!= null){
@@ -71,7 +67,7 @@ public class HomeRecAdapter2 extends RecyclerView.Adapter<HomeRecAdapter2.ViewHo
 
     @Override
     public int getItemCount() {
-        return home == null ? 8 : home.size();
+        return home == null ? 0 : home.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
