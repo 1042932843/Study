@@ -82,7 +82,7 @@ public class UltraPagerTwoCenterTypeAdapter extends PagerAdapter {
         float a = Float.parseFloat(banners.get((2*position+1)-1).getLength());
         BigDecimal   b   =   new BigDecimal(a/60);
         a=b.setScale(1,   BigDecimal.ROUND_HALF_UP).floatValue();
-        String le="约"+a +"小时";
+        String le=" 约"+a +"小时";
         time1.setText(le);
         TextView students1=(TextView)  linearLayout.findViewById(R.id.students);
         String am=banners.get((2*position+1)-1).getAmount()+"人学习";
@@ -109,7 +109,7 @@ public class UltraPagerTwoCenterTypeAdapter extends PagerAdapter {
         float aa = Float.parseFloat(banners.get(2*(position+1)-1).getLength());
         BigDecimal   bb   =   new BigDecimal(aa/60);
         aa=bb.setScale(1,   BigDecimal.ROUND_HALF_UP).floatValue();
-        String le2="约"+aa+"小时";
+        String le2=" 约"+aa+"小时";
         time2.setText(le2);
         TextView students2=(TextView)  linearLayout.findViewById(R.id.students2);
         String am2=banners.get(2*(position+1)-1).getAmount()+"人学习";

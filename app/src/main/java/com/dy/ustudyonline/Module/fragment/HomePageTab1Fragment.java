@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -72,6 +73,13 @@ public class HomePageTab1Fragment extends BaseFragment {
 
     @BindView(R.id.swipe_refresh_layout)SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean mIsRefreshing = false;
+
+    @BindView(R.id.hotlayout)
+    LinearLayout hotlayout;
+    @BindView(R.id.rlayout)
+    LinearLayout rlayout;
+    @BindView(R.id.newlayout)
+    LinearLayout newlayout;
 
     @BindView(R.id.ultra_viewpager)
     UltraViewPager ultraViewPager;
@@ -168,14 +176,11 @@ public class HomePageTab1Fragment extends BaseFragment {
                 .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
                 .setFocusColor(getResources().getColor(R.color.colorPrimary))
                 .setNormalColor(getResources().getColor(R.color.point))
-                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics()));
-//set the alignment
-        ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-//construct built-in indicator, and add it to  UltraViewPager
-        ultraViewPager.getIndicator().build();
-
+                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics()))
+                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM).build();
         ultraViewPager.setInfiniteLoop(true);
-        ultraViewPager.setAutoScroll(10000);
+
+
         ultraViewPager1.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         ultraViewPager1.setMultiScreen(0.9f);
         ultraViewPager1.setInfiniteLoop(true);
@@ -214,12 +219,61 @@ public class HomePageTab1Fragment extends BaseFragment {
                             //ultraViewPager2.refresh();
                             //ultraPagerTwoCenterTypeAdapterlove.notifyData(dataTab1.getrCourseList());
                             //ultraViewPager3.refresh();
+                            banners.clear();
                             banners.addAll(dataTab1.getAdList());
                             initBanner();
+                            ultraViewPager1datas.clear();
                             ultraViewPager1datas.addAll(dataTab1.getnCourseList());
+                            ultraViewPager2datas.clear();
                             ultraViewPager2datas.addAll(dataTab1.gethCourseList());
+                            ultraViewPager3datas.clear();
                             ultraViewPager3datas.addAll(dataTab1.getrCourseList());
-                            initModule();
+                            if(ultraViewPager1datas.size()<=0){
+                                newlayout.setVisibility(View.GONE);
+                            }else{
+                                newlayout.setVisibility(View.VISIBLE);
+                                ultraPagerTwoCenterTypeAdapter = new UltraPagerTwoCenterTypeAdapter(ultraViewPager1datas,getContext());
+                                ultraPagerTwoCenterTypeAdapter.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+                                        ToastUtil.ShortToast("点击了"+position);
+                                        Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                                ultraViewPager1.setAdapter(ultraPagerTwoCenterTypeAdapter);
+                            }
+                            if(ultraViewPager2datas.size()<=0){
+                                hotlayout.setVisibility(View.GONE);
+                            }else{
+                                hotlayout.setVisibility(View.VISIBLE);
+                                ultraPagerTwoCenterTypeAdapterhot = new UltraPagerTwoCenterTypeAdapter(ultraViewPager2datas,getContext());
+                                ultraPagerTwoCenterTypeAdapterhot.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+                                        ToastUtil.ShortToast("点击了"+position);
+                                        Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                                ultraViewPager2.setAdapter(ultraPagerTwoCenterTypeAdapterhot);
+                            }
+                            if(ultraViewPager3datas.size()<=0){
+                                rlayout.setVisibility(View.GONE);
+                            }else {
+                                rlayout.setVisibility(View.VISIBLE);
+                                ultraPagerTwoCenterTypeAdapterlove = new UltraPagerTwoCenterTypeAdapter(ultraViewPager3datas,getContext());
+                                ultraPagerTwoCenterTypeAdapterlove.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+                                        ToastUtil.ShortToast("点击了"+position);
+                                        Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                                ultraViewPager3.setAdapter(ultraPagerTwoCenterTypeAdapterlove);
+                            }
+
                             fldatas.clear();
                             fldatas.addAll(dataTab1.getFlCourseList());
                             adapter2.notifyDataSetChanged();
@@ -250,40 +304,7 @@ public class HomePageTab1Fragment extends BaseFragment {
                 break;
         }
     }
-    private void initModule() {
-        ultraPagerTwoCenterTypeAdapter = new UltraPagerTwoCenterTypeAdapter(ultraViewPager1datas,getContext());
-        ultraPagerTwoCenterTypeAdapter.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                ToastUtil.ShortToast("点击了"+position);
-                Intent intent=new Intent(getActivity(), IntroductionActivity.class);
-                startActivity(intent);
-            }
-        });
-        ultraViewPager1.setAdapter(ultraPagerTwoCenterTypeAdapter);
 
-        ultraPagerTwoCenterTypeAdapterhot = new UltraPagerTwoCenterTypeAdapter(ultraViewPager2datas,getContext());
-        ultraPagerTwoCenterTypeAdapterhot.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                ToastUtil.ShortToast("点击了"+position);
-                Intent intent=new Intent(getActivity(), IntroductionActivity.class);
-                startActivity(intent);
-            }
-        });
-        ultraViewPager2.setAdapter(ultraPagerTwoCenterTypeAdapterhot);
-
-        ultraPagerTwoCenterTypeAdapterlove = new UltraPagerTwoCenterTypeAdapter(ultraViewPager3datas,getContext());
-        ultraPagerTwoCenterTypeAdapterlove.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                ToastUtil.ShortToast("点击了"+position);
-                Intent intent=new Intent(getActivity(), IntroductionActivity.class);
-                startActivity(intent);
-            }
-        });
-        ultraViewPager3.setAdapter(ultraPagerTwoCenterTypeAdapterlove);
-    }
 
     private void initRecyclerView(){
         FullyLinearLayoutManager linearLayoutManager= new FullyLinearLayoutManager(getActivity());
@@ -325,6 +346,7 @@ public class HomePageTab1Fragment extends BaseFragment {
     }
 
     private void initBanner() {
+        ultraViewPager.setAutoScroll(10000);
         ultraPagerAdapter = new UltraPagerAdapter(banners,getContext());
         ultraPagerAdapter.setOnBannerItemClickListener(new UltraPagerAdapter.OnBannerItemClickListener() {
             @Override
