@@ -7,5 +7,9 @@
     android:orientation="vertical"
     tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab4Fragment">
     <include layout="@layout/toolbar"/>
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/zx"/>
 </LinearLayout>

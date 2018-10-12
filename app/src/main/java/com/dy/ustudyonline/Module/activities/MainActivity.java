@@ -384,11 +384,10 @@ public class MainActivity extends BaseActivity {
                     String state = apiMsg.getState();
                     switch (state){
                         case "0000":
-                            //{"message":"请选择要切换的平台","state":"0000","resultInfo":{"nowTName":"珠海市民终身学习网","tNameList":[{"tName":"珠海市民终身学习网"},{"tName":"珠海社区大学香洲区社区学院"},{"tName":"南屏科技园青年学习网"},{"tName":"珠海电大网络课堂"},{"tName":"珠海电大电子商务专科网络课堂"},{"tName":"幼儿园家长学校"},{"tName":"珠海市企业学院"},{"tName":"鼎义互联网络商学院"},{"tName":"珠海电大会计学（专科）在线学习平台"},{"tName":"珠海电大会计学（本科）在线学习平台"},{"tName":"珠海电大工商管理（专科）在线学习平台"},{"tName":"珠海电大工商管理（本科）在线学习平台"},{"tName":"珠海电大物流管理（专科）在线学习平台"},{"tName":"珠海电大物流管理（本科）在线学习平台"},{"tName":"珠海电大金融学（专科）在线学习平台"},{"tName":"珠海电大金融学（本科）在线学习平台"},{"tName":"珠海电大物业管理（专科）在线学习平台"},{"tName":"珠海电大人力资源管理（专科）在线学习平台"},{"tName":"珠海电大行政管理（专科）在线学习平台"},{"tName":"珠海电大行政管理（本科）在线学习平台"},{"tName":"珠海电大社会工作（专科）在线学习平台"},{"tName":"珠海电大社会工作（本科）在线学习平台"},{"tName":"珠海电大法学（专科）在线学习平台"},{"tName":"珠海电大法学（本科）在线学习平台"},{"tName":"珠海电大计算机网络（专科）在线学习平台"},{"tName":"珠海电大英语（本科）在线学习平台"},{"tName":"珠海电大英语（专科）在线学习平台"},{"tName":"珠海电大学前教育（专科）在线学习平台"},{"tName":"珠海电大旅游管理（专科）在线学习平台"},{"tName":"珠海电大学前教育（本科）在线学习平台"},{"tName":"珠海电大农村行政管理（专科）在线学习平台"},{"tName":"资源平台"},{"tName":"购买资源平台"},{"tName":"自建资源平台"},{"tName":"珠海电大数字媒体设计（专科）在线学习平台"},{"tName":"珠海电大计算机信息管理（专科）在线学习平台"},{"tName":"珠海电大教职工培训网"},{"tName":"珠海社区大学金湾区社区学院"},{"tName":"珠海社区大学斗门区社区学院"},{"tName":"终身学习网平台"}]}}
-                            JSONObject json=JSON.parseObject(apiMsg.getResultInfo()) ;
+                           JSONObject json=JSON.parseObject(apiMsg.getResultInfo()) ;
                             defTName=json.getString("nowTName");
                             def.setHint(defTName);
-                            JSONArray array=json.getJSONArray("tNameList");//这什么JB数据结构啊，放Array里面了又
+                            JSONArray array=json.getJSONArray("tNameList");
                             sitedef=new String[array.size()];
                             int size=array.size();
                             for (int i=0;i<size;i++){

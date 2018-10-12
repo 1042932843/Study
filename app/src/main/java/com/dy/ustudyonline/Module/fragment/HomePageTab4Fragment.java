@@ -1,13 +1,17 @@
 package com.dy.ustudyonline.Module.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Base.BaseFragment;
+
+import butterknife.BindView;
 
 /**
  * Name: HomePageTab1Fragment
@@ -17,7 +21,8 @@ import com.dy.ustudyonline.Base.BaseFragment;
  * Date: 2018-08-29 11:02
  */
 public class HomePageTab4Fragment extends BaseFragment {
-
+    @BindView(R.id.title)
+    TextView title;
     public HomePageTab4Fragment() {
         // Required empty public constructor
     }
@@ -30,7 +35,8 @@ public class HomePageTab4Fragment extends BaseFragment {
 
     @Override
     public void finishCreateView(Bundle state) {
-
+        title.setText("资讯");
+        title.setTextColor(Color.WHITE);
     }
 
     @Override
