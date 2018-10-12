@@ -182,7 +182,7 @@ public class MainActivity extends BaseActivity {
         pdialog.setMessage("设置中...");
         pdialog.show();
         RetrofitHelper.getMainAPI()
-                .setDef(PreferenceUtil.getStringPRIVATE("id",""),which)
+                .setDef(PreferenceUtil.getStringPRIVATE("userName",""),which)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -324,7 +324,7 @@ public class MainActivity extends BaseActivity {
         ver.setHint("版本号 "+DuskyApp.getInstance().getAppVersionName(this));
         name.setText(PreferenceUtil.getStringPRIVATE("realName","未登录"));
         if(!TextUtils.isEmpty(PreferenceUtil.getStringPRIVATE("imageUrl",""))){
-            Glide.with(MainActivity.this).load(ApiConstants.Base_URL+PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
+            Glide.with(MainActivity.this).load(PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
         }
 
     }

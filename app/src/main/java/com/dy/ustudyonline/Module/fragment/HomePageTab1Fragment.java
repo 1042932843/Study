@@ -80,6 +80,13 @@ public class HomePageTab1Fragment extends BaseFragment {
     LinearLayout rlayout;
     @BindView(R.id.newlayout)
     LinearLayout newlayout;
+    @BindView(R.id.bannerlayout)
+    LinearLayout bannerlayout;
+    @BindView(R.id.fllayout)
+    LinearLayout xianxiu;
+
+    @BindView(R.id.tip)
+    TextView tip;
 
     @BindView(R.id.ultra_viewpager)
     UltraViewPager ultraViewPager;
@@ -206,6 +213,7 @@ public class HomePageTab1Fragment extends BaseFragment {
                     String a=bean.string();
                     ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
                     String state = apiMsg.getState();
+                    int total=0;
                     switch (state){
                         case "0000":
                             //ToastUtil.ShortToast(apiMsg.getMessage());
@@ -221,7 +229,14 @@ public class HomePageTab1Fragment extends BaseFragment {
                             //ultraViewPager3.refresh();
                             banners.clear();
                             banners.addAll(dataTab1.getAdList());
-                            initBanner();
+                            if(banners.size()<=0){
+                                bannerlayout.setVisibility(View.GONE);
+                                total++;
+                            }else {
+                                bannerlayout.setVisibility(View.VISIBLE);
+                                initBanner();
+                            }
+
                             ultraViewPager1datas.clear();
                             ultraViewPager1datas.addAll(dataTab1.getnCourseList());
                             ultraViewPager2datas.clear();
@@ -236,8 +251,8 @@ public class HomePageTab1Fragment extends BaseFragment {
                                 ultraPagerTwoCenterTypeAdapter.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
                                     @Override
                                     public void onItemClick(int position) {
-                                        ToastUtil.ShortToast("点击了"+position);
                                         Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                                        intent.putExtra("courseTerraceId",ultraViewPager1datas.get(position).getCourseTerraceId());
                                         startActivity(intent);
                                     }
                                 });
@@ -245,14 +260,15 @@ public class HomePageTab1Fragment extends BaseFragment {
                             }
                             if(ultraViewPager2datas.size()<=0){
                                 hotlayout.setVisibility(View.GONE);
+                                total++;
                             }else{
                                 hotlayout.setVisibility(View.VISIBLE);
                                 ultraPagerTwoCenterTypeAdapterhot = new UltraPagerTwoCenterTypeAdapter(ultraViewPager2datas,getContext());
                                 ultraPagerTwoCenterTypeAdapterhot.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
                                     @Override
                                     public void onItemClick(int position) {
-                                        ToastUtil.ShortToast("点击了"+position);
                                         Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                                        intent.putExtra("courseTerraceId",ultraViewPager2datas.get(position).getCourseTerraceId());
                                         startActivity(intent);
                                     }
                                 });
@@ -260,14 +276,15 @@ public class HomePageTab1Fragment extends BaseFragment {
                             }
                             if(ultraViewPager3datas.size()<=0){
                                 rlayout.setVisibility(View.GONE);
+                                total++;
                             }else {
                                 rlayout.setVisibility(View.VISIBLE);
                                 ultraPagerTwoCenterTypeAdapterlove = new UltraPagerTwoCenterTypeAdapter(ultraViewPager3datas,getContext());
                                 ultraPagerTwoCenterTypeAdapterlove.setOnBannerItemClickListener(new UltraPagerTwoCenterTypeAdapter.OnBannerItemClickListener() {
                                     @Override
                                     public void onItemClick(int position) {
-                                        ToastUtil.ShortToast("点击了"+position);
                                         Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                                        intent.putExtra("courseTerraceId",ultraViewPager3datas.get(position).getCourseTerraceId());
                                         startActivity(intent);
                                     }
                                 });
@@ -276,7 +293,19 @@ public class HomePageTab1Fragment extends BaseFragment {
 
                             fldatas.clear();
                             fldatas.addAll(dataTab1.getFlCourseList());
-                            adapter2.notifyDataSetChanged();
+                            if(fldatas.size()<=0){
+                                xianxiu.setVisibility(View.GONE);
+                                total++;
+                            }else {
+                                xianxiu.setVisibility(View.VISIBLE);
+                                adapter2.notifyDataSetChanged();
+                            }
+                            if(total>=4){
+                                tip.setVisibility(View.VISIBLE);
+                            }else{
+                                tip.setVisibility(View.GONE);
+                            }
+
                             ToastUtil.ShortToast("加载成功");
                             break;
                         case "-1":
@@ -316,6 +345,7 @@ public class HomePageTab1Fragment extends BaseFragment {
             @Override
             public void onClick(int position) {
                 Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                //intent.putExtra("courseTerraceId",fldatas.get(position).getCourseTerraceId());
                 startActivity(intent);
             }
 
@@ -335,6 +365,7 @@ public class HomePageTab1Fragment extends BaseFragment {
             @Override
             public void onClick(int position) {
                 Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+                intent.putExtra("courseTerraceId",fldatas.get(position).getCourseTerraceId());
                 startActivity(intent);
             }
 
@@ -351,8 +382,8 @@ public class HomePageTab1Fragment extends BaseFragment {
         ultraPagerAdapter.setOnBannerItemClickListener(new UltraPagerAdapter.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent=new Intent(getActivity(), IntroductionActivity.class);
-                startActivity(intent);
+               // Intent intent=new Intent(getActivity(), IntroductionActivity.class);
+               // startActivity(intent);
             }
         });
         ultraViewPager.setAdapter(ultraPagerAdapter);

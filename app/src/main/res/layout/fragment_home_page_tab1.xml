@@ -12,7 +12,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <TextView
+            android:id="@+id/tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="该站点暂无资源"
+            android:textColor="@color/textcolor"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
@@ -26,11 +33,11 @@
         android:overScrollMode="never">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
 
 
         <LinearLayout
@@ -39,12 +46,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_160"
-                android:background="@android:color/darker_gray">
-
+                android:layout_height="@dimen/dp_172"
+                >
                 <com.tmall.ultraviewpager.UltraViewPager
                     android:id="@+id/ultra_viewpager"
                     android:layout_width="match_parent"
@@ -63,7 +68,10 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16">
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -91,7 +99,7 @@
             <com.tmall.ultraviewpager.UltraViewPager
                 android:id="@+id/ultra_viewpagernew"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_200" />
+                android:layout_height="@dimen/dp_196" />
         </LinearLayout>
 
         <LinearLayout
@@ -105,7 +113,10 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16">
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,7 +144,7 @@
             <com.tmall.ultraviewpager.UltraViewPager
                 android:id="@+id/ultra_viewpagernewhot"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_200" />
+                android:layout_height="@dimen/dp_196" />
         </LinearLayout>
 
         <LinearLayout
@@ -147,7 +158,10 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16">
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -175,21 +189,25 @@
             <com.tmall.ultraviewpager.UltraViewPager
                 android:id="@+id/ultra_viewpagernewlove"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_200" />
+                android:layout_height="@dimen/dp_196" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/xianxiu"
+            android:id="@+id/xueli"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_12"
             android:background="@android:color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16">
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -231,7 +249,10 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16">
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12">
 
                 <TextView
                     android:layout_width="wrap_content"

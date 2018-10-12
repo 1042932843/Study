@@ -2,15 +2,18 @@ package com.dy.ustudyonline.Module.activities;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Base.BaseActivity;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
@@ -27,7 +30,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
     protected ProgressDialog dialog;
-
+    protected ProgressDialog pdialog;
     @BindView(R.id.title)
     TextView title;
 
@@ -35,7 +38,7 @@ public class LoginActivity extends BaseActivity {
     EditText username;
     @BindView(R.id.pwd)
     EditText password;
-
+    String[] sitedef;
     @SuppressLint("CheckResult")
     @OnClick(R.id.login)
     public void doLogin(){
@@ -61,7 +64,6 @@ public class LoginActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bean -> {
                     String a=bean.string();
-
                     ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
                     String state = apiMsg.getState();
                     switch (state){
@@ -77,6 +79,7 @@ public class LoginActivity extends BaseActivity {
                             if(user!=null){
                                 PreferenceUtil.put("username",user.getUserName());
                                 PreferenceUtil.putStringPRIVATE("id",user.getId());
+                                PreferenceUtil.putStringPRIVATE("userName",user.getUserName());
                                 PreferenceUtil.putStringPRIVATE("realName",user.getRealName());
                                 PreferenceUtil.putStringPRIVATE("imageUrl",user.getImageUrl());
                                 if("0".equals(user.getFlag())){
@@ -90,10 +93,36 @@ public class LoginActivity extends BaseActivity {
 
                             }
                             break;
-                        case "-1":
+                        case "0003":
+                            JSONArray jsonArray=JSON.parseArray(apiMsg.getResultInfo()) ;
+                            sitedef=new String[jsonArray.size()];
+                            int size=jsonArray.size();
+                            for (int i=0;i<size;i++){
+                                JSONObject ti= (JSONObject) jsonArray.get(i);
+                                sitedef[i]= ti.getString("tName");
+                            }
+                            if(sitedef==null||sitedef.length==0){
+                                ToastUtil.ShortToast("未获取到站点，如非网络问题，请尝试刷新或者重启app");
+                                return;
+                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setIcon(R.drawable.ic_launcher);
+                            builder.setTitle("请选择一个默认站点");
+                            //    指定下拉列表的显示数据
+                            //    设置一个下拉的列表选择项
+                            builder.setItems(sitedef, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    doSet(which);
+                                }
+                            });
+                            builder.show();
+                            break;
                         case "-2":
                             default:
                             ToastUtil.ShortToast(apiMsg.getMessage());
+
                             break;
                     }
 
@@ -103,6 +132,38 @@ public class LoginActivity extends BaseActivity {
                     ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
                 });
 
+    }
+
+    @SuppressLint("CheckResult")
+    private void doSet(int which) {
+        pdialog = new ProgressDialog(LoginActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
+        pdialog.setMessage("设置中...");
+        pdialog.show();
+        RetrofitHelper.getMainAPI()
+                .setDef(PreferenceUtil.getStringPRIVATE("userName",""),which)
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            doLogin();
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                    pdialog.dismiss();
+                }, throwable -> {
+                    pdialog.dismiss();
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
     }
 
     @Override

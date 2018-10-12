@@ -52,14 +52,12 @@ public class PlayActivity extends BasePlayerActivity {
 
     private void loadCover(ImageView imageView, String url) {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.drawable.pic3x);
         Glide.with(this.getApplicationContext())
                 .setDefaultRequestOptions(
                         new RequestOptions()
                                 .frame(3000000)
                                 .centerCrop()
-                                .error(R.drawable.pic3x)
-                                .placeholder(R.drawable.pic3x))
+                               )
                 .load(url)
                 .into(imageView);
     }

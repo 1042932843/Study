@@ -9,224 +9,277 @@
     tools:context="com.dy.ustudyonline.Module.activities.IntroductionActivity">
 
     <include layout="@layout/toolbar"/>
-
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dp_12">
-
-
-    <ImageView
-        android:id="@+id/pic"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200"
-        android:src="@drawable/pic3x"
-        android:scaleType="centerCrop"
-        />
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_16"
-        android:text="微软Power BI_商业数据分析和可视化呈现教学课程"
-        android:textColor="@color/texttitle"/>
-
-        <Button
-            android:id="@+id/but"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_36"
-            android:layout_gravity="end"
-            android:layout_marginBottom="@dimen/dp_8"
-            android:layout_marginEnd="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_8"
-            android:background="@drawable/btn_theme_solid_bg2"
-            android:gravity="center"
-            android:text="进入学习"
-            android:textColor="@android:color/white" />
-
-        <View
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_12"
-            android:background="@color/background"/>
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:paddingLeft="@dimen/dp_16"
-            android:paddingRight="@dimen/dp_16">
-            <RelativeLayout
-                android:id="@+id/lan"
-                android:layout_width="@dimen/dp_4"
-                android:layout_height="@dimen/dp_16"
-                android:background="@color/colorPrimary"
-                android:layout_centerVertical="true"
-                >
-
-            </RelativeLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/texttitle"
-                android:layout_centerVertical="true"
-                android:text="课程简介"
-                android:layout_toRightOf="@+id/lan"
-                android:layout_marginLeft="@dimen/dp_4"/>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/dp_12"
-            android:paddingLeft="@dimen/dp_16"
-            android:paddingRight="@dimen/dp_16"
-            android:paddingBottom="@dimen/dp_12"
-            android:text="微软Power BI是目前最新、最热门的商业智能概，也被称为第三代商业智能工具-全员商业智能（BI）,即通过Excel和Pow"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_12"
-            android:background="@color/background"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:paddingLeft="@dimen/dp_16"
-            android:paddingRight="@dimen/dp_16">
-            <RelativeLayout
-                android:id="@+id/lan2"
-                android:layout_width="@dimen/dp_4"
-                android:layout_height="@dimen/dp_16"
-                android:background="@color/colorPrimary"
-                android:layout_centerVertical="true"
-                >
-
-            </RelativeLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/texttitle"
-                android:layout_centerVertical="true"
-                android:text="基本信息"
-                android:layout_toRightOf="@+id/lan2"
-                android:layout_marginLeft="@dimen/dp_4"/>
-
-
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/dp_8"
-            android:paddingLeft="@dimen/dp_16"
-            android:paddingRight="@dimen/dp_16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="2"
-            >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_12">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_192">
+                    <com.shuyu.gsyvideoplayer.video.NormalGSYVideoPlayer
+                        android:id="@+id/video_player"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_192"
+                        android:visibility="gone"
+                        />
+                <ImageView
+                    android:id="@+id/pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_192"
+                    android:scaleType="centerCrop"
+                     />
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/introtitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16"
+                    android:paddingTop="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_8"
+                    android:text=""
+                    android:textColor="@color/texttitle" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end">
+
+                    <Button
+                        android:id="@+id/cho"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_36"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:layout_marginBottom="@dimen/dp_8"
+                        android:background="@drawable/btn_theme_solid_bg2"
+                        android:gravity="center"
+                        android:text="立即选课"
+                        android:textColor="@android:color/white"
+                        android:layout_toEndOf="@+id/but"/>
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/but"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_36"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:layout_marginBottom="@dimen/dp_8"
+                        android:background="@drawable/btn_theme_solid_bg3"
+                        android:gravity="center"
+                        android:text="试播"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_12"
+                    android:background="@color/background" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16">
+
+                    <RelativeLayout
+                        android:id="@+id/lan"
+                        android:layout_width="@dimen/dp_4"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorPrimary">
+
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_88"
-                        android:background="@drawable/bj13x"
-                        android:text="授课老师"
-                        android:gravity="center"
-                        android:textColor="@android:color/white"/>
-                    <TextView
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:gravity="center"
-                        android:padding="@dimen/dp_8"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_88"
-                        android:background="@drawable/bj23x"
-                        android:text="学习进度"
-                        android:gravity="center"
-                        android:textColor="@android:color/white"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:gravity="center"
-                        android:padding="@dimen/dp_8"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_88"
-                    android:background="@drawable/bj33x"
-                    android:text="学分"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:gravity="center"
-                    android:padding="@dimen/dp_8"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_88"
-                        android:background="@drawable/bj43x"
-                        android:text="学习时间"
-                        android:gravity="center"
-                        android:textColor="@android:color/white"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:gravity="center"
-                        android:padding="@dimen/dp_8"/>
-                </LinearLayout>
-            </LinearLayout>
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:layout_toRightOf="@+id/lan"
+                        android:text="课程简介"
+                        android:textColor="@color/texttitle" />
+                </RelativeLayout>
 
-        </LinearLayout>
-    </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingRight="@dimen/dp_16"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:text="" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_12"
+                    android:background="@color/background" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16">
+
+                    <RelativeLayout
+                        android:id="@+id/lan2"
+                        android:layout_width="@dimen/dp_4"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorPrimary">
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:layout_toRightOf="@+id/lan2"
+                        android:text="基本信息"
+                        android:textColor="@color/texttitle" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_88"
+                                android:background="@drawable/bj13x"
+                                android:gravity="center"
+                                android:text="授课老师"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/teacher"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_8"
+                                android:text="@string/app_name" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_88"
+                                android:background="@drawable/bj23x"
+                                android:gravity="center"
+                                android:text="学习进度"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/progressT"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_8"
+                                android:text="@string/app_name" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_88"
+                                android:background="@drawable/bj33x"
+                                android:gravity="center"
+                                android:text="学分"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/point"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_8"
+                                android:text="@string/app_name" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_88"
+                                android:background="@drawable/bj43x"
+                                android:gravity="center"
+                                android:text="学习时间"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/studytime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_8"
+                                android:text="@string/app_name" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

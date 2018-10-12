@@ -30,5 +30,5 @@ public interface MainService {
 
     @POST("appOrdinaryUser/setDefTerrace.xhtml")
     @FormUrlEncoded
-    Observable<ResponseBody> setDef(@Field("userId") String id,@Field("index") int index);
+    Observable<ResponseBody> setDef(@Field("userName") String userName,@Field("index") int index);
 }

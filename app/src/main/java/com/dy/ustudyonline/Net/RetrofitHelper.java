@@ -3,6 +3,7 @@ package com.dy.ustudyonline.Net;
 
 import com.dy.ustudyonline.Base.DuskyApp;
 import com.dy.ustudyonline.Net.API.AccountSetService;
+import com.dy.ustudyonline.Net.API.IntroductionService;
 import com.dy.ustudyonline.Net.API.LoginRegisterService;
 import com.dy.ustudyonline.Net.API.MainService;
 import com.dy.ustudyonline.Net.API.homePageTab1Service;
@@ -48,6 +49,10 @@ public class RetrofitHelper {
   }
   public static MainService getMainAPI() {
     return createApi(MainService.class, ApiConstants.Base_URL);
+  }
+
+  public static IntroductionService getIntroductionAPI() {
+    return createApi(IntroductionService.class, ApiConstants.Base_URL);
   }
 
   /**

@@ -44,7 +44,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     bind = ButterKnife.bind(this);
     //初始化控件
     init(savedInstanceState);
-    loadData();
     initPermission();
   }
 
@@ -98,7 +97,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
   protected abstract void init(Bundle savedInstanceState);
 
-  public void loadData() {}
 
   @Override
   protected void onDestroy() {
