@@ -111,7 +111,7 @@ public class LoginActivity extends BaseActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which)
                                 {
-                                    doSet(which);
+                                    doSet(which,userName);
                                 }
                             });
                             builder.show();
@@ -132,12 +132,12 @@ public class LoginActivity extends BaseActivity {
     }
 
     @SuppressLint("CheckResult")
-    private void doSet(int which) {
+    private void doSet(int which,String userName) {
         pdialog = new ProgressDialog(LoginActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
         pdialog.setMessage("设置中...");
         pdialog.show();
         RetrofitHelper.getMainAPI()
-                .setDef(PreferenceUtil.getStringPRIVATE("userName",""),which)
+                .setDef(userName,which)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

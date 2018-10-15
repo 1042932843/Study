@@ -1,5 +1,6 @@
 package com.dy.ustudyonline.Module.activities;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,20 +8,28 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Base.BasePlayerActivity;
+import com.dy.ustudyonline.Module.entity.ApiMsg;
+import com.dy.ustudyonline.Net.RetrofitHelper;
+import com.dy.ustudyonline.Utils.PreferenceUtil;
+import com.dy.ustudyonline.Utils.ToastUtil;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.video.NormalGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class PlayActivity extends BasePlayerActivity {
-    private String url = "http://cntv.vod.cdn.myqcloud.com/flash/mp4video62/TMS/2018/04/11/d23b5cec668b1e59715b944c38b7848b_2000_h264_1872_aac_128-2.mp4";
+    private String url = "";
+    int pageNum=1;
 
     @BindView(R.id.imgLeft)
     ImageView imgLeft;
@@ -43,12 +52,38 @@ public class PlayActivity extends BasePlayerActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        getUrl();
         title.setText("");
         title.setTextColor(Color.WHITE);
         imgLeft.setImageResource(R.drawable.back);
-        initVideoBuilderMode();
+
     }
 
+    @SuppressLint("CheckResult")
+    public void getUrl(){
+        String courseTerraceId=getIntent().getStringExtra("courseTerraceId");
+        RetrofitHelper.getIntroductionAPI()
+                .toPersonVideo(PreferenceUtil.getStringPRIVATE("id",""),courseTerraceId,pageNum,"person")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            initVideoBuilderMode();
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                }, throwable -> {
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
+    }
 
     private void loadCover(ImageView imageView, String url) {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

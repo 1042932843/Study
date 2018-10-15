@@ -58,7 +58,9 @@ public class IntroductionActivity extends BasePlayerActivity {
     @OnClick(R.id.cho)
     public void chc(){
         if("进入学习".equals(cho.getText().toString())){
-            go();
+            Intent it =new Intent(IntroductionActivity.this,PlayActivity.class);
+            it.putExtra("courseTerraceId",getIntent().getStringExtra("courseTerraceId"));
+            startActivity(it);
         }else {
             xuanke();
         }
@@ -79,7 +81,7 @@ public class IntroductionActivity extends BasePlayerActivity {
                     String state = apiMsg.getState();
                     switch (state){
                         case "0000":
-                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            ToastUtil.ShortToast("选课成功，您可以立即开始学习，也可以前往菜单栏'学习'板块查看操作所选课程");
                             cho.setText("进入学习");
                             but.setVisibility(View.GONE);
                             pic.setVisibility(View.VISIBLE);

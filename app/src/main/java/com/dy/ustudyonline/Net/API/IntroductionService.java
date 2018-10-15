@@ -28,4 +28,11 @@ public interface IntroductionService {
     @POST("appPlayVideo/playTest.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> playTest(@Field("courseTerraceId") String deviceType);
+
+    @POST("appPlayVideo/toPersonVideo.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> toPersonVideo(@Field("userId") String userId,
+                                           @Field("courseTerraceId") String courseTerraceId,
+                                           @Field("pageNum") int pageNum,
+                                           @Field("flag") String person);
 }

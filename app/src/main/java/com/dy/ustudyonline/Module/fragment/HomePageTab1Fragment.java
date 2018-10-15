@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Adapter.HomeRecAdapter1;
 import com.dy.ustudyonline.Adapter.HomeRecAdapter2;
@@ -65,6 +66,7 @@ import static com.dy.ustudyonline.Module.activities.MainActivity.refreshData;
  */
 public class HomePageTab1Fragment extends BaseFragment {
     DataTab1 dataTab1;
+    String terraceName,haveLearn,coursePoints,realName;
 
     @OnClick(R.id.imgLeft)
     public void open(){
@@ -87,6 +89,15 @@ public class HomePageTab1Fragment extends BaseFragment {
 
     @BindView(R.id.tip)
     TextView tip;
+    @BindView(R.id.terraceName)
+    TextView terraceNameTv;
+    @BindView(R.id.haveLearn)
+    TextView haveLearnTv;
+    @BindView(R.id.coursePoints)
+    TextView coursePointsTv;
+    @BindView(R.id.realName)
+    TextView realNameTv;
+
 
     @BindView(R.id.ultra_viewpager)
     UltraViewPager ultraViewPager;
@@ -219,6 +230,19 @@ public class HomePageTab1Fragment extends BaseFragment {
                             //ToastUtil.ShortToast(apiMsg.getMessage());
                             //{"message":"跳转首页成功","state":"0000","resultInfo":{"hCourseList":[{"amount":"6","count":"2","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201421716950671.JPG","courseTerraceId":"297edff860781d760160e7e383cf02fa","length":"38.0","coursePoint":"0.8","courseName":"跨文化管理之澶渊之盟"},{"amount":"4","count":"11","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CPFWSPG0706144430001.jpg","courseTerraceId":"297edff860781d760160e7e3841d02fc","length":"104.0","coursePoint":"2.1","courseName":"舞动人生"},{"amount":"4","count":"128","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20150427101935120.jpg","courseTerraceId":"297edff862b7d5790162cc2c87f20427","length":"1589.9","coursePoint":"32","courseName":"Photoshop CS6一对一教程"},{"amount":"4","count":"3","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201341614111484.jpg","courseTerraceId":"297edff863010065016324c891dc2816","length":"60.4","coursePoint":"1.2","courseName":"强迫型人格障碍"},{"amount":"3","count":"7","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CPFWSPG0706114140030.jpg","courseTerraceId":"297edff860781d760160e7e383fe02fb","length":"82.3","coursePoint":"1.6","courseName":"职场与成熟女性妆"},{"amount":"3","count":"4","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201322895918848.jpg","courseTerraceId":"297edff860781d760160e7e3846b02fe","length":"114.3","coursePoint":"2.3","courseName":"成就卓越领导力"},{"amount":"2","count":"7","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CPFWSPG0520133005001.jpg","courseTerraceId":"297edff860781d760160e7e37cdd02d2","length":"48.1","coursePoint":"1.0","courseName":"中关村创业大街后传"},{"amount":"2","count":"4","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201334173846561.jpg","courseTerraceId":"297edff860781d760160e7e3844c02fd","length":"114.2","coursePoint":"2.3","courseName":"组织智慧"}],"muCount":0,"nCourseList":[{"amount":"1","count":"6","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CNFWSPB0331202137083.jpg","courseTerraceId":"297edff85f3380d0015f3381c1840001","length":"5.1","coursePoint":"0.1","courseName":"民企形势分析"},{"amount":"0","count":"3","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20161009024727262.jpg","courseTerraceId":"297edff85f3380d0015f3381c25e0002","length":"70.8","coursePoint":"1.4","courseName":"霸道面试秘籍"},{"amount":"0","count":"7","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CNFWSPB0331203646379.jpg","courseTerraceId":"297edff85f3380d0015f3381c28d0003","length":"25.6","coursePoint":"0.5","courseName":"处理男女关系的智慧"},{"amount":"0","count":"5","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20161012091820971.jpg","courseTerraceId":"297edff85f3380d0015f3381c2bc0004","length":"51.1","coursePoint":"1.0","courseName":"如何用SEO思维写简历"},{"amount":"0","count":"7","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CNFWSPB0528164537315.jpg","courseTerraceId":"297edff85f3380d0015f3381c2fa0005","length":"21.0","coursePoint":"0.4","courseName":"企业处理违纪职工败诉的原因"},{"amount":"0","count":"8","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20160303105007969.jpg","courseTerraceId":"297edff85f3380d0015f3381c3290006","length":"170.0","coursePoint":"3.4","courseName":"保教知识与能力之游戏活动的指导"},{"amount":"0","count":"26","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20160812161823128.jpg","courseTerraceId":"297edff85f3380d0015f3381c3480007","length":"552.2","coursePoint":"11","courseName":"2016公务员《申论》"},{"amount":"0","count":"8","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20160303133436489.jpg","courseTerraceId":"297edff85f3380d0015f3381c3770008","length":"145.1","coursePoint":"2.9","courseName":"保教知识与能力之教育评价"}],"rCourseList":[{"amount":"4","count":"3","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201341614111484.jpg","courseTerraceId":"297edff863010065016324c891dc2816","length":"60.4","coursePoint":"1.2","courseName":"强迫型人格障碍"},{"amount":"2","count":"8","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CNSFHIB0925105651030.jpg","courseTerraceId":"297edff863010065016324c892492817","length":"199.7","coursePoint":"4.0","courseName":"阳光心态"},{"amount":"2","count":"4","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/20133279381291.jpg","courseTerraceId":"297edff863010065016324c892c62818","length":"56.2","coursePoint":"1.1","courseName":"道之为物恍兮惚兮"},{"amount":"1","count":"1","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/CPFHOPG0325104101002.jpg","courseTerraceId":"297edff863010065016324c893422819","length":"10.3","coursePoint":"1.0","courseName":"组合25式太极拳"},{"amount":"0","count":"1","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/2013523103820921.jpg","courseTerraceId":"297edff863010065016324c893bf281a","length":"27.9","coursePoint":"0.6","courseName":"广告行销的运用"},{"amount":"1","count":"2","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/COFAGHG0206152151014.jpg","courseTerraceId":"297edff863010065016324c8943c281b","length":"72.9","coursePoint":"1.5","courseName":"消毒大作战"},{"amount":"1","count":"1","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201341514637280.jpg","courseTerraceId":"297edff863010065016324c894b9281c","length":"15.0","coursePoint":"0.3","courseName":"我仰视精神病人"},{"amount":"2","count":"4","imageUrl":"http://61.143.38.10:9088/subpfv32/common/images/courseImage/001001/201351412634145.jpg","courseTerraceId":"297edff863010065016324c883f727fa","length":"55.9","coursePoint":"1.1","courseName":"小穴位大作用"}],"terraceName":"珠海市民终身学习网","haveLearn":"374.18","coursePoints":"6.70","realName":"王丹","adList":[{"dr":"0","id":"297edff859719ec1015971bb86060002","imageUrl":"/commons/images/advertisement/20170106110338.jpg","linkUrl":"#","rank":"","status":"0","terraceCode":"001001","ts":"2017-01-06 11:03:52"},{"dr":"0","id":"297edff85b83bc15015b856fecab0028","imageUrl":"/commons/images/advertisement/20170419165904.jpg","linkUrl":"#","rank":"","status":"0","terraceCode":"001001","ts":"2017-04-19 16:59:16"},{"dr":"0","id":"297edff86071824d0160730721650044","imageUrl":"/commons/images/advertisement/20171220162520.jpg","linkUrl":"#","rank":"","status":"0","terraceCode":"001001","ts":"2017-12-20 16:25:35"}]}}
                             dataTab1= JSON.parseObject(apiMsg.getResultInfo(),DataTab1.class);
+                            JSONObject object=JSON.parseObject(apiMsg.getResultInfo());
+                            terraceName=object.getString("terraceName");
+                            haveLearn=object.getString("haveLearn");
+                            coursePoints=object.getString("coursePoints");
+                            realName=object.getString("realName");
+                            terraceName="欢迎使用"+terraceName;
+                            realName=realName+"学员";
+                            coursePoints="学分银行："+coursePoints;
+                            haveLearn="已获学时："+haveLearn;
+                            terraceNameTv.setText(terraceName);
+                            realNameTv.setText(realName);
+                            haveLearnTv.setText(haveLearn);
+                            coursePointsTv.setText(coursePoints);
                             //ultraPagerAdapter.notifyData(dataTab1.getAdList());
                             //ultraViewPager.refresh();
                             //ultraPagerTwoCenterTypeAdapter.notifyData(dataTab1.getnCourseList());
