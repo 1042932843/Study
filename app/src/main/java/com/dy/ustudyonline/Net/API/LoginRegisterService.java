@@ -21,6 +21,11 @@ public interface LoginRegisterService {
     Observable<ResponseBody> login(@Field("userName") String account,
                                    @Field("passWord") String password);
 
+
+    @POST("appOrdinaryUser/userLoginOut.xhtmll")
+    @FormUrlEncoded
+    Observable<ResponseBody> userLoginOut(@Field("userId") String userId);
+
     @POST("appOrdinaryUser/updateUserPwd.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> reset(@Field("userId") String id,

@@ -7,7 +7,12 @@ import com.dy.ustudyonline.Net.API.IntroductionService;
 import com.dy.ustudyonline.Net.API.LoginRegisterService;
 import com.dy.ustudyonline.Net.API.MainService;
 import com.dy.ustudyonline.Net.API.homePageTab1Service;
+import com.dy.ustudyonline.Net.API.homePageTab3Service;
 import com.dy.ustudyonline.Utils.CommonUtil;
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +60,10 @@ public class RetrofitHelper {
     return createApi(IntroductionService.class, ApiConstants.Base_URL);
   }
 
+  public static homePageTab3Service gethomePageTab3API() {
+    return createApi(homePageTab3Service.class, ApiConstants.Base_URL);
+  }
+
   /**
    * 根据传入的baseUrl，和api创建retrofit
    */
@@ -83,8 +92,10 @@ public class RetrofitHelper {
           //设置Http缓存
           Cache cache = new Cache(new File(DuskyApp.getInstance()
               .getCacheDir(), "HttpCache"), 1024 * 1024 * 10);
-
+          ClearableCookieJar cookieJar =
+                  new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(DuskyApp.getInstance()));
           mOkHttpClient = new OkHttpClient.Builder()
+                  .cookieJar(cookieJar)
               .cache(cache)
               //.addInterceptor(interceptor).addInterceptor(statusInterceptor)
               .addNetworkInterceptor(new CacheInterceptor())//这里关闭缓存

@@ -57,12 +57,12 @@
                 android:id="@+id/btn"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_24"
-                android:padding="@dimen/dp_2"
-                android:text="去报名"
-                android:gravity="center"
-                android:textColor="@android:color/white"
+                android:layout_alignParentEnd="true"
                 android:background="@color/colorPrimary"
-                android:layout_alignParentEnd="true"/>
+                android:gravity="center"
+                android:padding="@dimen/dp_2"
+                android:text="去学习"
+                android:textColor="@android:color/white" />
 
         </RelativeLayout>
 
@@ -80,17 +80,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:drawableLeft="@drawable/time2x"
-                android:text="132人已学习"
+                android:text=""
                 android:textColor="@color/texthint"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_10" />
             <TextView
                 android:id="@+id/students2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:textSize="@dimen/sp_12"
-                android:textColor="@color/texttitle"
-                android:text="预计106分钟"/>
+                android:textSize="@dimen/sp_10"
+                android:textColor="@color/texthint"
+                android:text=""/>
         </RelativeLayout>
     </RelativeLayout>
 

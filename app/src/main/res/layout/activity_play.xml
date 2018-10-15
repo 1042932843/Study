@@ -36,9 +36,11 @@
             android:layout_width="@dimen/dp_32"
             android:layout_height="@dimen/dp_32"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_16"/>
+            android:layout_marginRight="@dimen/dp_16"
+            android:visibility="gone"/>
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/imgRight2"
             android:padding="@dimen/dp_6"
             android:src="@drawable/share"
@@ -55,21 +57,23 @@
         android:layout_height="@dimen/dp_192"
          />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dp_12">
+        android:orientation="vertical">
+        <include layout="@layout/line_h"/>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/toolbar_tab"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fillViewport="true"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            />
 
-
-
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar_tab" />
     </LinearLayout>
-    </ScrollView>
 </LinearLayout>

@@ -72,6 +72,10 @@ public class HomePageTab1Fragment extends BaseFragment {
     public void open(){
         EventBus.getDefault().post(MainActivity.openDrawer);
     }
+    @OnClick(R.id.imgRight)
+    public void msg(){
+       ToastUtil.ShortToast("功能开发中");
+    }
 
     @BindView(R.id.swipe_refresh_layout)SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean mIsRefreshing = false;
@@ -174,7 +178,7 @@ public class HomePageTab1Fragment extends BaseFragment {
         title.setText("首页");
         title.setTextColor(Color.WHITE);
         imgLeft.setImageResource(R.drawable.mine);
-        imageRight.setImageResource(R.drawable.msg);
+        //imageRight.setImageResource(R.drawable.msg);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.post(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
@@ -355,6 +359,7 @@ public class HomePageTab1Fragment extends BaseFragment {
                     loadData();
                 });
                 break;
+
         }
     }
 

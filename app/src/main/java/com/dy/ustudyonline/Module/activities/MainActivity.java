@@ -81,6 +81,11 @@ public class MainActivity extends BaseActivity {
     protected ProgressDialog pdialog;
     public static final String openDrawer = "drawer";
     public static final String refreshData = "refresh";
+    public static final String Page1 = "Page1";
+    public static final String Page2 = "Page2";
+    public static final String Page3 = "Page3";
+    public static final String Page4 = "Page4";
+    public static final String Page5 = "Page5";
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
@@ -290,6 +295,10 @@ public class MainActivity extends BaseActivity {
             case openDrawer:
                 openDrawer();
                 break;
+            case Page2:
+                viewPager.setCurrentItem(1);
+                break;
+
         }
     }
 

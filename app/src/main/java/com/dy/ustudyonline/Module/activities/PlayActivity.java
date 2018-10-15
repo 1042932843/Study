@@ -4,22 +4,34 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.dy.studyonline.R;
+import com.dy.ustudyonline.Adapter.FragmentAdapter;
 import com.dy.ustudyonline.Base.BasePlayerActivity;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
+import com.dy.ustudyonline.Module.entity.PlayItem;
+import com.dy.ustudyonline.Module.fragment.PlayTab1Fragment;
 import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.video.NormalGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,7 +41,15 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PlayActivity extends BasePlayerActivity {
     private String url = "";
+    private String titleT = "";
     int pageNum=1;
+    @BindView(R.id.toolbar_tab)
+    TabLayout tabs;
+    @BindView(R.id.view_pager)
+    ViewPager view_pager;
+
+    boolean isOk=false;
+    List<PlayItem> playItems=new ArrayList<>();
 
     @BindView(R.id.imgLeft)
     ImageView imgLeft;
@@ -56,23 +76,71 @@ public class PlayActivity extends BasePlayerActivity {
         title.setText("");
         title.setTextColor(Color.WHITE);
         imgLeft.setImageResource(R.drawable.back);
+        initViewPager();
+    }
+
+    public void initViewPager(){
+        List<String> titles;
+        String[] PLANETS = {"课件","作业","答疑","评价","资料"};
+        titles= Arrays.asList(PLANETS);
+        List<Fragment> mFragments=new ArrayList<>();
+        PlayTab1Fragment playTab1Fragment=new PlayTab1Fragment();
+        PlayTab1Fragment playTab1Fragment2=new PlayTab1Fragment();
+        PlayTab1Fragment playTab1Fragment3=new PlayTab1Fragment();
+        PlayTab1Fragment playTab1Fragment4=new PlayTab1Fragment();
+        PlayTab1Fragment playTab1Fragment5=new PlayTab1Fragment();
+        mFragments.add(playTab1Fragment);
+        mFragments.add(playTab1Fragment2);
+        mFragments.add(playTab1Fragment3);
+        mFragments.add(playTab1Fragment4);
+        mFragments.add(playTab1Fragment5);
+
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), mFragments, titles);
+        view_pager.setAdapter(adapter);
+        view_pager.setOffscreenPageLimit(titles.size());
+        tabs.setupWithViewPager(view_pager);
+        //tab可滚动
+        //tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
 
     }
 
+
     @SuppressLint("CheckResult")
     public void getUrl(){
+        String id=PreferenceUtil.getStringPRIVATE("id","");
         String courseTerraceId=getIntent().getStringExtra("courseTerraceId");
         RetrofitHelper.getIntroductionAPI()
-                .toPersonVideo(PreferenceUtil.getStringPRIVATE("id",""),courseTerraceId,pageNum,"person")
+                .toPersonVideo(id,courseTerraceId,pageNum,"person")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bean -> {
                     String a=bean.string();
                     ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
                     String state = apiMsg.getState();
+                    //{"pageSize":10,"commentTotalCount":0,"chapterlList":[{"playRate":"0%","chapter_url":"http://119.146.222.170:9980/001001/gmzy/zyk/jycy//CPSHWXG1008164559001.mp4","id":"e3ab77871da6425d814a3dcbddfb6f2c","chapter_name":"如何撰写一流的个人简历","chapter_length":"24.2"},{"playRate":"0%","chapter_url":"http://119.146.222.170:9980/001001/gmzy/zyk/jycy//CPSHWXG1008164559002.mp4","id":"09190ece728f4f6bb7ef79b7252ac07c","chapter_name":"什么才是最佳的形象礼仪","chapter_length":"22.2"},{"playRate":"0%","chapter_url":"http://119.146.222.170:9980/001001/gmzy/zyk/jycy//CPSHWXG1008164559003.mp4","id":"f626cd441e574d4897a0924e4b1c129b","chapter_name":"面试破冰的三板斧","chapter_length":"24.3"}],"chapter_count":3,"courseImageUrl":"http://119.146.222.170:9082/subpfv32/common/images/courseImage/001001/20161009024727262.jpg","peCommentList":[],"flag":"person"}
                     switch (state){
                         case "0000":
-                            initVideoBuilderMode();
+                            JSONObject object=JSON.parseObject(apiMsg.getResultInfo());
+                            JSONArray array=object.getJSONArray("chapterlList");
+                            int size=array.size();
+                            if(size>0){
+                                for(int i=0;i<size;i++){
+                                    PlayItem item=JSON.parseObject(array.get(i).toString(),PlayItem.class);
+                                    playItems.add(item);
+                                }
+                                //fldatas.addAll();
+
+                                pageNum++;
+                            }else{
+
+                            }
+                            if(!isOk&&playItems.size()>0){
+                                url=playItems.get(0).getChapter_url();
+                                titleT=playItems.get(0).getChapter_name();
+                                initVideoBuilderMode();
+                                isOk=true;
+                            }
+
                             break;
                         case "-1":
                         case "-2":
@@ -122,7 +190,7 @@ public class PlayActivity extends BasePlayerActivity {
                 .setThumbImageView(imageView)
                 .setUrl(url)
                 .setCacheWithPlay(true)
-                .setVideoTitle("测试视频")
+                .setVideoTitle(titleT)
                 .setIsTouchWiget(true)
                 .setRotateViewAuto(false)
                 .setLockLand(false)

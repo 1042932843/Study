@@ -44,7 +44,7 @@
                 android:background="@color/appred"
                 android:textColor="@android:color/white"
                 android:text="20学分"
-                android:textSize="@dimen/sp_12"
+                android:textSize="@dimen/sp_10"
                 android:padding="@dimen/dp_2"
                 />
 
@@ -62,13 +62,13 @@
                 android:drawableLeft="@drawable/time2x"
                 android:text="12节 1时50分钟"
                 android:textColor="@color/texthint"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_10" />
             <TextView
                 android:id="@+id/students"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:textSize="@dimen/sp_12"
+                android:textSize="@dimen/sp_10"
                 android:textColor="@color/texthint"
                 android:text="9人学习"/>
         </RelativeLayout>
@@ -115,7 +115,7 @@
                 android:background="@color/appred"
                 android:textColor="@android:color/white"
                 android:text="20学分"
-                android:textSize="@dimen/sp_12"
+                android:textSize="@dimen/sp_10"
                 android:padding="@dimen/dp_2"
                 />
 
@@ -133,13 +133,13 @@
                 android:drawableLeft="@drawable/time2x"
                 android:text="12节 1小时50分"
                 android:textColor="@color/texthint"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_10" />
             <TextView
                 android:id="@+id/students2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:textSize="@dimen/sp_12"
+                android:textSize="@dimen/sp_10"
                 android:textColor="@color/texthint"
                 android:text="9人学习"/>
         </RelativeLayout>

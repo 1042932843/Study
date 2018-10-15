@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -42,6 +43,18 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class IntroductionActivity extends BasePlayerActivity {
+    @BindView(R.id.weixuan)
+    LinearLayout weixuan;
+    @BindView(R.id.yixuan)
+    LinearLayout yixuan;
+
+    @BindView(R.id.time)
+    TextView time;
+    @BindView(R.id.teache)
+    TextView teache;
+    @BindView(R.id.poin)
+    TextView poin;
+
     @BindView(R.id.video_player)
     NormalGSYVideoPlayer detailPlayer;
     private String url ="";
@@ -69,10 +82,11 @@ public class IntroductionActivity extends BasePlayerActivity {
     @SuppressLint("CheckResult")
     private void xuanke() {
         pdialog = new ProgressDialog(this, ProgressDialog.THEME_HOLO_LIGHT);
-        pdialog.setMessage("正在拼命帮你选课...");
+        pdialog.setMessage("正在帮你选课...");
         pdialog.show();
+        String courseTerraceId=getIntent().getStringExtra("courseTerraceId");
         RetrofitHelper.getIntroductionAPI()
-                .choseCoursePage(PreferenceUtil.getStringPRIVATE("id",""),getIntent().getStringExtra("courseTerraceId"))
+                .choseCoursePage(PreferenceUtil.getStringPRIVATE("id",""),courseTerraceId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bean -> {
@@ -85,6 +99,8 @@ public class IntroductionActivity extends BasePlayerActivity {
                             cho.setText("进入学习");
                             but.setVisibility(View.GONE);
                             pic.setVisibility(View.VISIBLE);
+                            weixuan.setVisibility(View.GONE);
+                            yixuan.setVisibility(View.VISIBLE);
                             if (isPlay) {
                                 detailPlayer.getCurrentPlayer().onVideoPause();
                                 detailPlayer.getCurrentPlayer().release();
@@ -182,12 +198,19 @@ public class IntroductionActivity extends BasePlayerActivity {
                                 cho.setText("进入学习");
                                 pic.setVisibility(View.VISIBLE);
                                 mSwipeRefreshLayout.setRefreshing(false);
+                                yixuan.setVisibility(View.VISIBLE);
+                                weixuan.setVisibility(View.GONE);
                             }else {
+                                yixuan.setVisibility(View.GONE);
+                                weixuan.setVisibility(View.VISIBLE);
                                 but.setVisibility(View.VISIBLE);
                                 cho.setText("立即选课");
                                 detailPlayer.setVisibility(View.VISIBLE);
                                 pic.setVisibility(View.GONE);
                                 getTestPlayUrl();
+                                teache.setText("授课老师："+introduction.getCourseTeacher());
+                                time.setText("课程时长："+introduction.getVideoLength()+"分钟");
+                                poin.setText("学分：   "+introduction.getCoursePoint()+"学分");
                             }
                             String cont;
                             if(TextUtils.isEmpty(introduction.getRemark())){

@@ -162,6 +162,40 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/weixuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16"
+                    android:visibility="gone">
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="课程时长：312分钟"
+                        android:textColor="@color/textcolor"
+                        android:layout_marginTop="@dimen/dp_12"
+                        />
+                    <TextView
+                        android:id="@+id/teache"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="授课老师：dsy"
+                        android:textColor="@color/textcolor"
+                        android:layout_marginTop="@dimen/dp_8"
+                        />
+                    <TextView
+                        android:id="@+id/poin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="学分：6学分"
+                        android:textColor="@color/textcolor"
+                        android:layout_marginTop="@dimen/dp_8"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/yixuan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"

@@ -49,7 +49,9 @@
         <!-- 蒲公英 -->
         <!-- 可选-->
         <activity android:name="com.pgyersdk.activity.FeedbackActivity"/>
-        <activity android:name="com.dy.ustudyonline.Module.activities.IntroductionActivity" />
+        <activity android:name="com.dy.ustudyonline.Module.activities.IntroductionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
         <activity android:name="com.dy.ustudyonline.Module.activities.PlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>

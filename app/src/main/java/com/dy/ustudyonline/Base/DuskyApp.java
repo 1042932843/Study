@@ -1,5 +1,6 @@
 package com.dy.ustudyonline.Base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -11,12 +12,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.dy.ustudyonline.Design.imagePicker.GlideImageLoader;
+import com.dy.ustudyonline.Module.entity.ApiMsg;
+import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.Crash.CrashHandler;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
@@ -26,6 +30,8 @@ import com.pgyersdk.crash.PgyCrashManager;
 
 import java.util.ArrayList;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -100,10 +106,31 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
     }
 
 
+    @SuppressLint("CheckResult")
     public void logout(){
         //JPushInterface.cleanTags(this,1042032943);
         PreferenceUtil.resetPrivate();
-        ToastUtil.ShortToast("已退出，请重新登录");
+        RetrofitHelper.getLoginRegisterAPI()
+                .userLoginOut(PreferenceUtil.getStringPRIVATE("id",""))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                            ToastUtil.ShortToast("已退出，请重新登录");
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                }, throwable -> {
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
 
     }
     /**
