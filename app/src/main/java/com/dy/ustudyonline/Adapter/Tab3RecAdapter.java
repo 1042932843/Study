@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,34 +39,41 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.reclist_item1, parent, false);
         // 实例化viewholder
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        /*if(home==null||home.get(position)==null){
+        if(home==null||home.get(position)==null){
             return;
-        }*/
+        }
         // 绑定数据
-        holder.name.setText(home.get(position).getCourse().getCourseName());
-        holder.content.setText(home.get(position).getCourse().getCourseTeacher());
-        float a2 = Float.parseFloat(home.get(position).getStudyLength());
+        holder.checkbox.setVisibility(home.get(position).isShow()?View.VISIBLE:View.GONE);
+        holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                onItemCheckedListener.Checked(position,isChecked);
+            }
+        });
+        holder.name.setText(home.get(position).getCourseName());
+        holder.content.setText(home.get(position).getCourseTeacher());
+        float a2 = Float.parseFloat(home.get(position).getStudyLenth());
         BigDecimal b2   =   new BigDecimal(a2/60);
         a2=b2.setScale(1,   BigDecimal.ROUND_HALF_UP).floatValue();
         String le2=" 已学习"+a2 +"小时";
         holder.time2.setText(le2);
-        float a = Float.parseFloat(home.get(position).getVideoLength());
+        float a = Float.parseFloat(home.get(position).getVideoLenth());
         BigDecimal b   =   new BigDecimal(a/60);
         a=b.setScale(1,   BigDecimal.ROUND_HALF_UP).floatValue();
         String le="总共约"+a +"小时";
         holder.students2.setText(le);
-        Glide.with(context).load(ApiConstants.Base_URL+home.get(position).getCourse().getImageUrl()).into(holder.img);
+        Glide.with(context).load(home.get(position).getImgUrl()).into(holder.img);
         //单独对应类型的设置事件
         if( onItemClickListener!= null){
             holder.itemView.setOnClickListener( new View.OnClickListener() {
@@ -89,13 +98,15 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
         return home == null ? 0 : home.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name,content,time2,students2;
         ImageView img;
+        CheckBox checkbox;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            checkbox=(CheckBox)itemView.findViewById(R.id.checkbox);
             name = (TextView) itemView.findViewById(R.id.name);
             content=(TextView) itemView.findViewById(R.id.content);
             time2 = (TextView) itemView.findViewById(R.id.time2);
@@ -103,6 +114,10 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
             img=(ImageView) itemView.findViewById(R.id.img);
 
         }
+    }
+    OnItemCheckedListener onItemCheckedListener;
+    public interface OnItemCheckedListener{
+        void Checked(int position,boolean checked);
     }
 
     OnItemClickListener onItemClickListener;
@@ -112,6 +127,10 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
     }
     public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
         this.onItemClickListener=onItemClickListener;
+    }
+
+    public void setOnItemCheckedListener(OnItemCheckedListener onItemCheckedListener ){
+        this.onItemCheckedListener=onItemCheckedListener;
     }
 }
 

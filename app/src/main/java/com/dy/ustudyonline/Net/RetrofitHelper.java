@@ -7,6 +7,7 @@ import com.dy.ustudyonline.Net.API.IntroductionService;
 import com.dy.ustudyonline.Net.API.LoginRegisterService;
 import com.dy.ustudyonline.Net.API.MainService;
 import com.dy.ustudyonline.Net.API.homePageTab1Service;
+import com.dy.ustudyonline.Net.API.homePageTab2Service;
 import com.dy.ustudyonline.Net.API.homePageTab3Service;
 import com.dy.ustudyonline.Utils.CommonUtil;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
@@ -49,6 +50,10 @@ public class RetrofitHelper {
   public static homePageTab1Service gethomePageTab1API() {
     return createApi(homePageTab1Service.class, ApiConstants.Base_URL);
   }
+  public static homePageTab2Service gethomePageTab2API() {
+    return createApi(homePageTab2Service.class, ApiConstants.Base_URL);
+  }
+
   public static AccountSetService getAccountSetAPI() {
     return createApi(AccountSetService.class, ApiConstants.Base_URL);
   }

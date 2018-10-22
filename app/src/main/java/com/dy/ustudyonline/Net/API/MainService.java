@@ -5,6 +5,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
 /**
  * Name: LoginRegisterService
@@ -31,4 +32,7 @@ public interface MainService {
     @POST("appOrdinaryUser/setDefTerrace.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> setDef(@Field("userName") String userName,@Field("index") int index);
+
+    @POST
+    Observable<ResponseBody> urlPost(@Url String url);
 }

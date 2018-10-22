@@ -1,0 +1,418 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/dp_12"
+    android:paddingBottom="@dimen/dp_8"
+    tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab5Fragment"
+    android:background="@android:color/white">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_12"
+        >
+        <TextView
+            android:id="@+id/totaltitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            />
+        <RelativeLayout
+            android:layout_below="@+id/totaltitle"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/dp_2"
+            android:background="@color/colorPrimary"
+            android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal"
+    android:weightSum="2"
+   >
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_4"
+        android:background="@drawable/touch_bg">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:scaleType="centerCrop"/>
+            <TextView
+                android:id="@+id/btn"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_24"
+                android:padding="@dimen/dp_2"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8">
+
+            <TextView
+                android:id="@+id/cname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/texttitle"
+                android:layout_toStartOf="@+id/score"
+                android:layout_alignParentStart="true"
+                android:layout_marginRight="@dimen/dp_4"
+                android:lines="2"
+                android:ellipsize="end"
+                />
+            <TextView
+                android:id="@+id/score"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/appred"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_10"
+                android:padding="@dimen/dp_2"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:drawableLeft="@drawable/time2x"
+
+                android:textColor="@color/texthint"
+                android:textSize="@dimen/sp_10" />
+            <TextView
+                android:id="@+id/students"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/sp_10"
+                android:textColor="@color/texthint"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/dp_8"
+        android:layout_height="match_parent"
+
+        />
+    <LinearLayout
+        android:id="@+id/l2"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/dp_4"
+        android:background="@drawable/touch_bg">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_100"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:id="@+id/btn2"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_24"
+                android:padding="@dimen/dp_2"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8">
+
+            <TextView
+                android:id="@+id/cname2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/score2"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/texttitle"
+                android:layout_marginRight="@dimen/dp_4"
+                android:lines="2"
+                android:ellipsize="end"
+                />
+            <TextView
+                android:id="@+id/score2"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/appred"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_10"
+                android:padding="@dimen/dp_2"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:drawableLeft="@drawable/time2x"
+                android:textColor="@color/texthint"
+                android:textSize="@dimen/sp_10" />
+            <TextView
+                android:id="@+id/students2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/sp_10"
+                android:textColor="@color/texthint"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/dp_12"
+    android:weightSum="2">
+
+<LinearLayout
+    android:id="@+id/l3"
+    android:visibility="gone"
+    android:layout_width="@dimen/dp_0"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/dp_4"
+    android:background="@drawable/touch_bg">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/btn3"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_24"
+            android:padding="@dimen/dp_2"
+
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8">
+
+        <TextView
+            android:id="@+id/cname3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/texttitle"
+            android:layout_toStartOf="@+id/score3"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="@dimen/dp_4"
+            android:lines="2"
+            android:ellipsize="end"
+            />
+        <TextView
+            android:id="@+id/score3"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/appred"
+            android:textColor="@android:color/white"
+            android:text="20学分"
+            android:textSize="@dimen/sp_10"
+            android:padding="@dimen/dp_2"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/time3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:drawableLeft="@drawable/time2x"
+            android:textColor="@color/texthint"
+            android:textSize="@dimen/sp_10" />
+        <TextView
+            android:id="@+id/students3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/sp_10"
+            android:textColor="@color/texthint"
+            />
+    </RelativeLayout>
+</LinearLayout>
+<RelativeLayout
+    android:layout_width="@dimen/dp_8"
+    android:layout_height="match_parent"
+
+    />
+<LinearLayout
+    android:id="@+id/l4"
+    android:visibility="gone"
+    android:layout_width="@dimen/dp_0"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:layout_marginRight="@dimen/dp_4"
+    android:background="@drawable/touch_bg">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/img4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/btn4"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_24"
+            android:padding="@dimen/dp_2"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8">
+
+        <TextView
+            android:id="@+id/cname4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/score4"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/texttitle"
+            android:layout_marginRight="@dimen/dp_4"
+            android:lines="2"
+            android:ellipsize="end"
+            />
+        <TextView
+            android:id="@+id/score4"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/appred"
+            android:textColor="@android:color/white"
+            android:text="20学分"
+            android:textSize="@dimen/sp_10"
+            android:padding="@dimen/dp_2"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/time4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:drawableLeft="@drawable/time2x"
+            android:textColor="@color/texthint"
+            android:textSize="@dimen/sp_10" />
+        <TextView
+            android:id="@+id/students4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/sp_10"
+            android:textColor="@color/texthint"
+            />
+    </RelativeLayout>
+</LinearLayout>
+
+</LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+
+        >
+        <TextView
+            android:id="@+id/expall"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingRight="@dimen/dp_12"
+            android:paddingTop="@dimen/dp_6"
+            android:paddingBottom="@dimen/dp_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/arrright2x"
+            android:text="查看全部 "
+            android:textSize="@dimen/sp_12"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_theme_solid_bg"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+</LinearLayout>

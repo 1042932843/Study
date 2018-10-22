@@ -6,50 +6,24 @@ package com.dy.ustudyonline.Module.entity;
  * @DESCRIPTION:
  */
 public class DataTab3Item {
-    String ts;
-    String status;
-    String lastPlayTime;
-    String id;
-    String dr;
+    String imgUrl;
+    String videoLenth;
+    String remark;
 
-    public String getTs() {
-        return ts;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setTs(String ts) {
-        this.ts = ts;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
-    public String getStatus() {
-        return status;
+    public String getVideoLenth() {
+        return videoLenth;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLastPlayTime() {
-        return lastPlayTime;
-    }
-
-    public void setLastPlayTime(String lastPlayTime) {
-        this.lastPlayTime = lastPlayTime;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDr() {
-        return dr;
-    }
-
-    public void setDr(String dr) {
-        this.dr = dr;
+    public void setVideoLenth(String videoLenth) {
+        this.videoLenth = videoLenth;
     }
 
     public String getRemark() {
@@ -60,62 +34,87 @@ public class DataTab3Item {
         this.remark = remark;
     }
 
-    public String getVideoLength() {
-        return videoLength;
+    public String getCourseTerraceId() {
+        return courseTerraceId;
     }
 
-    public void setVideoLength(String videoLength) {
-        this.videoLength = videoLength;
+    public void setCourseTerraceId(String courseTerraceId) {
+        this.courseTerraceId = courseTerraceId;
     }
 
-
-    public String getUserName() {
-        return userName;
+    public String getStudyLenth() {
+        return studyLenth;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStudyLenth(String studyLenth) {
+        this.studyLenth = studyLenth;
     }
 
-    public String getTerraceCode() {
-        return terraceCode;
+    public String getCoursePoint() {
+        return coursePoint;
     }
 
-    public void setTerraceCode(String terraceCode) {
-        this.terraceCode = terraceCode;
+    public void setCoursePoint(String coursePoint) {
+        this.coursePoint = coursePoint;
     }
 
-    public String getStudyLength() {
-        return studyLength;
+    public String getCourseTeacher() {
+        return courseTeacher;
     }
 
-    public void setStudyLength(String studyLength) {
-        this.studyLength = studyLength;
+    public void setCourseTeacher(String courseTeacher) {
+        this.courseTeacher = courseTeacher;
     }
 
-    public String getFlag() {
-        return flag;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
-    String remark;
-    String videoLength;
-
-    public Course getCourse() {
-        return course;
+    public String getLastPlayTime() {
+        return lastPlayTime;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setLastPlayTime(String lastPlayTime) {
+        this.lastPlayTime = lastPlayTime;
     }
 
-    Course course;
-    String userName;
-    String terraceCode;
-    String studyLength;
-    String flag;
+    public String getCourseName() {
+        return courseName;
+    }
 
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    String courseTerraceId;
+    String studyLenth;
+    String coursePoint;
+    String courseTeacher;
+    String courseType;
+    String lastPlayTime;
+    String courseName;
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
+    }
+
+    public boolean isSelect;
+
+    public boolean isShow() {
+        return Show;
+    }
+
+    public void setShow(boolean show) {
+        Show = show;
+    }
+
+    public boolean Show;
 }

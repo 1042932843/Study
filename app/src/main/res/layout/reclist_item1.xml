@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="@dimen/dp_16"
     android:paddingRight="@dimen/dp_16"
+    android:layout_marginTop="@dimen/dp_12"
     android:layout_marginBottom="@dimen/dp_12"
     android:background="@drawable/touch_bg">
     
@@ -18,13 +19,14 @@
         />
 
     <RelativeLayout
+        android:id="@+id/layout"
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_96"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/img"
+        android:layout_toEndOf="@+id/img"
         android:layout_marginLeft="@dimen/dp_8"
+        android:layout_toStartOf="@+id/checkbox"
         >
 
         <RelativeLayout
@@ -94,4 +96,11 @@
         </RelativeLayout>
     </RelativeLayout>
 
+    <CheckBox
+        android:visibility="gone"
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
 </RelativeLayout>
