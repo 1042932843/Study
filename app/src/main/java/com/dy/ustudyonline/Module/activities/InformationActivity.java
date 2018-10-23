@@ -1,33 +1,27 @@
-package com.dy.ustudyonline.Module.fragment;
-
+package com.dy.ustudyonline.Module.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.dy.studyonline.R;
+import com.dy.ustudyonline.Adapter.InformationRecAdapter;
 import com.dy.ustudyonline.Adapter.Tab2RecAdapter;
-import com.dy.ustudyonline.Adapter.Tab4RecAdapter;
-import com.dy.ustudyonline.Base.BaseFragment;
-import com.dy.ustudyonline.Module.activities.CourseTypeActivity;
-import com.dy.ustudyonline.Module.activities.InformationActivity;
-import com.dy.ustudyonline.Module.activities.IntroductionActivity;
-import com.dy.ustudyonline.Module.activities.NewsDetailActivity;
+import com.dy.ustudyonline.Base.BaseActivity;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.DataTab2;
-import com.dy.ustudyonline.Module.entity.DataTab4;
+import com.dy.ustudyonline.Module.entity.DataTab4Item;
 import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
@@ -40,101 +34,41 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Name: HomePageTab1Fragment
- * Author: Dusky
- * QQ: 1042932843
- * Comment: //作业
- * Date: 2018-08-29 11:02
- */
-public class HomePageTab4Fragment extends BaseFragment {
+public class InformationActivity extends BaseActivity {
+
+    @BindView(R.id.imgLeft)
+    ImageView imgLeft;
+    @OnClick(R.id.imgLeft)
+    public void back(){
+        finish();
+    }
     @BindView(R.id.title)
-    TextView title;
-    boolean isFirst=true;
-    List<DataTab4> datas=new ArrayList<>();
-    Tab4RecAdapter adapter;
+    TextView apptitle;
+
+    List<DataTab4Item> datas=new ArrayList<>();
+    InformationRecAdapter adapter;
+
     @BindView(R.id.swipe_refresh_layout)SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recyclerview)RecyclerView recyclerView;
     @BindView(R.id.tip)RelativeLayout tip;
-    @OnClick(R.id.tip)
-    public void jump(){
-
-    }
-    public HomePageTab4Fragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_home_page_tab4;
+    public int getLayoutId() {
+        return R.layout.activity_infromation;
     }
 
     @Override
-    public void finishCreateView(Bundle state) {
-        title.setText("资讯");
-        title.setTextColor(Color.WHITE);
+    protected void init(Bundle savedInstanceState) {
+        initWidget();
         initRecyclerView();
     }
 
-    @Override
-    public void lazyLoad(){
-        if(isFirst){
-            mSwipeRefreshLayout.post(() -> {
-                mSwipeRefreshLayout.setRefreshing(true);
-                datas.clear();
-                loadData();
-            });
-            isFirst=false;
-        }else{
-            if(datas.size()<=0){
-                loadData();
-            }
 
-        }
-
-    }
-
-    public void initRefreshLayout() {
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            datas.clear();
-            loadData();
-        });
-    }
-
-
-    protected void initRecyclerView() {
-        //去掉recyclerView动画处理闪屏
-        ((SimpleItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        adapter=new Tab4RecAdapter(datas,getContext());
-        adapter.setOnItemClickListener(new Tab4RecAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(String id,String title) {
-                getNewsData(id,title);
-            }
-        });
-        adapter.setOnExpAllClickListener(new Tab4RecAdapter.OnExpAllClickListener() {
-            @Override
-            public void onClick(String type,String name) {
-                Intent intent=new Intent(getActivity(), InformationActivity.class);
-                intent.putExtra("typeId",type);
-                intent.putExtra("typeName",name);
-                startActivity(intent);
-            }
-        });
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-        initRefreshLayout();
-    }
 
     @SuppressLint("CheckResult")
-    private void loadData() {
+    public void loadData() {
         RetrofitHelper.gethomePageTab4API()
-                .pagelistNews(PreferenceUtil.getStringPRIVATE("id",""))
+                .moreNews(getIntent().getStringExtra("typeId"))
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -150,12 +84,13 @@ public class HomePageTab4Fragment extends BaseFragment {
                             if(size>0){
                                 tip.setVisibility(View.GONE);
                                 for(int i=0;i<size;i++){
-                                    DataTab4 item=JSON.parseObject(array.get(i).toString(),DataTab4.class);
+                                    DataTab4Item item=JSON.parseObject(array.get(i).toString(),DataTab4Item.class);
                                     datas.add(item);
                                 }
                                 adapter.notifyDataSetChanged();
 
                             }else{
+                                ToastUtil.ShortToast(a);
                                 tip.setVisibility(View.VISIBLE);
                             }
 
@@ -173,9 +108,41 @@ public class HomePageTab4Fragment extends BaseFragment {
                 });
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
+
+    protected void initRecyclerView() {
+        //去掉recyclerView动画处理闪屏
+        ((SimpleItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        adapter=new InformationRecAdapter(datas,this);
+        adapter.setOnItemClickListener(new InformationRecAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(String id,String title) {
+                getNewsData(id,title);
+            }
+        });
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        initRefreshLayout();
+    }
+
+    public void initRefreshLayout() {
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            datas.clear();
+            loadData();
+        });
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            datas.clear();
+            loadData();
+        });
+    }
+    private void initWidget() {
+        apptitle.setText(getIntent().getStringExtra("typeName"));
+        apptitle.setTextColor(Color.WHITE);
+        imgLeft.setImageResource(R.drawable.back);
     }
 
     @SuppressLint("CheckResult")
@@ -191,7 +158,7 @@ public class HomePageTab4Fragment extends BaseFragment {
                     String state = apiMsg.getState();
                     switch (state){
                         case "0000":
-                            Intent intent=new Intent(getActivity(), NewsDetailActivity.class);
+                            Intent intent=new Intent(InformationActivity.this, NewsDetailActivity.class);
                             intent.putExtra("NewsResult",apiMsg.getResultInfo());
                             intent.putExtra("NewsTitle",title);
                             startActivity(intent);
@@ -209,3 +176,5 @@ public class HomePageTab4Fragment extends BaseFragment {
                 });
     }
 }
+
+

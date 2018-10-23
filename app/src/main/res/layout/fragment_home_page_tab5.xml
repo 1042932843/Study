@@ -23,6 +23,7 @@
             android:drawableLeft="@drawable/icon_more_community"
             android:drawablePadding="@dimen/dp_10"
             android:text="学习社区"
+            android:textStyle="bold"
             />
 
 
@@ -58,6 +59,7 @@
             android:drawableLeft="@drawable/icon_more_comment"
             android:drawablePadding="@dimen/dp_10"
             android:text="评价中心"
+            android:textStyle="bold"
             />
 
 
@@ -93,6 +95,7 @@
             android:drawableLeft="@drawable/icon_more_studyrecord"
             android:drawablePadding="@dimen/dp_10"
             android:text="学习记录"
+            android:textStyle="bold"
             />
 
 
@@ -128,6 +131,7 @@
             android:drawableLeft="@drawable/icon_more_signin"
             android:drawablePadding="@dimen/dp_10"
             android:text="在线签到"
+            android:textStyle="bold"
             />
 
 

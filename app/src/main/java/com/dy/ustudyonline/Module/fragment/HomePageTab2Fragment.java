@@ -161,9 +161,8 @@ public class HomePageTab2Fragment extends BaseFragment {
                                 }
                               adapter.notifyDataSetChanged();
 
-
-
                             }else{
+                                ToastUtil.ShortToast(a);
                                 tip.setVisibility(View.VISIBLE);
                             }
 

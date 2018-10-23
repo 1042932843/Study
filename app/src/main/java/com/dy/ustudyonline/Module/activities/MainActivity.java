@@ -395,7 +395,9 @@ public class MainActivity extends BaseActivity {
                         case "0000":
                            JSONObject json=JSON.parseObject(apiMsg.getResultInfo()) ;
                             defTName=json.getString("nowTName");
-                            def.setHint(defTName);
+                            if(defTName!=null){
+                                def.setHint(defTName);
+                            }
                             JSONArray array=json.getJSONArray("tNameList");
                             sitedef=new String[array.size()];
                             int size=array.size();

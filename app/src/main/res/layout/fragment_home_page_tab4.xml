@@ -3,13 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
     android:orientation="vertical"
-    tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab4Fragment">
+    tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab3Fragment">
     <include layout="@layout/toolbar"/>
-    <ImageView
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/zx"/>
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/tvt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="没有资讯？"
+                    android:textColor="@color/textcolor"
+                    />
+                <TextView
+                    android:id="@+id/tpjump"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="尝试下拉刷新"
+                    android:layout_below="@+id/tvt"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_margin="@dimen/dp_6"
+                    />
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background"
+                />
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

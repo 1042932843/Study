@@ -217,6 +217,7 @@ public class HomePageTab3Fragment extends BaseFragment {
             public void onClick(int position) {
                 Intent intent=new Intent(getActivity(), PlayActivity.class);
                 intent.putExtra("courseTerraceId",fldatas.get(position).getCourseTerraceId());
+                intent.putExtra("title",fldatas.get(position).getCourseName());
                 startActivity(intent);
             }
 

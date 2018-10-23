@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab3Fragment">
+    <include layout="@layout/toolbar"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newstitle"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/texttitle"
+        android:padding="@dimen/dp_16"/>
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_96"
+        android:scaleType="centerCrop"
+        android:visibility="gone"/>
+   <TextView
+       android:id="@+id/news"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="@dimen/dp_12"
+       android:textSize="@dimen/sp_14"
+       android:textColor="@color/textcolor"/>
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

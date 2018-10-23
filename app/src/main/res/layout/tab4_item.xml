@@ -1,0 +1,188 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp_12"
+    android:paddingRight="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_4"
+    android:paddingBottom="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_12"
+    android:background="@android:color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/totaltitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/colorPrimary"
+            android:paddingTop="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_6"
+            android:textStyle="bold"
+            />
+
+        <View android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:background="@color/gray_light"
+            android:layout_marginBottom="@dimen/dp_6"/>
+
+    <RelativeLayout
+        android:id="@+id/l1"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_6"
+        android:background="@drawable/touch_bg">
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/app_name"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp_6"
+        android:id="@+id/time1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title1"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/texthint"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/l2"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_6"
+        android:background="@drawable/touch_bg">
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/app_name"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_6"
+            android:id="@+id/time2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title2"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/texthint"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/l3"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_6"
+        android:background="@drawable/touch_bg">
+        <TextView
+            android:id="@+id/title3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/app_name"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_6"
+            android:id="@+id/time3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title3"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/texthint"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/l4"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_6"
+        android:background="@drawable/touch_bg">
+        <TextView
+            android:id="@+id/title4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/app_name"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_6"
+            android:id="@+id/time4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title4"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/texthint"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/l5"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_6"
+        android:background="@drawable/touch_bg">
+        <TextView
+            android:id="@+id/title5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/app_name"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_6"
+            android:id="@+id/time5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title5"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/texthint"/>
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+
+            >
+            <TextView
+                android:id="@+id/expall"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_6"
+                android:paddingBottom="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/arrright2x"
+                android:text="查看全部 "
+                android:textSize="@dimen/sp_12"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_theme_solid_bg"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

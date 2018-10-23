@@ -73,7 +73,7 @@ public class PlayActivity extends BasePlayerActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         getUrl();
-        title.setText("");
+        title.setText(getIntent().getStringExtra("title"));
         title.setTextColor(Color.WHITE);
         imgLeft.setImageResource(R.drawable.back);
         initViewPager();

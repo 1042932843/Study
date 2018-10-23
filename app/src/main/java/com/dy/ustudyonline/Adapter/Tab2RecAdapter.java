@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Module.entity.DataTab2;
 import com.dy.ustudyonline.Module.entity.DataTab2Item;
-import com.dy.ustudyonline.Module.entity.DataTab3Item;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -45,7 +42,7 @@ public class Tab2RecAdapter extends RecyclerView.Adapter<Tab2RecAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ccenter_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.tab2_item, parent, false);
         // 实例化viewholder
         ViewHolder viewHolder = new ViewHolder(v);
 

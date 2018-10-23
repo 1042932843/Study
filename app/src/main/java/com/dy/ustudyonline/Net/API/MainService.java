@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 /**
- * Name: LoginRegisterService
+ * Name: MainService
  * Author: Dusky
  * QQ: 1042932843
  * Comment: //TODO

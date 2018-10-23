@@ -87,6 +87,8 @@
                 android:layout_marginRight="@dimen/dp_4"
                 android:lines="2"
                 android:ellipsize="end"
+                android:text="跨文化管理澶渊之盟"
+                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/score"
@@ -174,6 +176,7 @@
                 android:layout_marginRight="@dimen/dp_4"
                 android:lines="2"
                 android:ellipsize="end"
+                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/score2"
@@ -266,6 +269,7 @@
             android:layout_marginRight="@dimen/dp_4"
             android:lines="2"
             android:ellipsize="end"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/score3"
@@ -353,6 +357,7 @@
             android:layout_marginRight="@dimen/dp_4"
             android:lines="2"
             android:ellipsize="end"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/score4"

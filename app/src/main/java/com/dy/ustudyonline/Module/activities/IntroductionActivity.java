@@ -73,6 +73,7 @@ public class IntroductionActivity extends BasePlayerActivity {
         if("进入学习".equals(cho.getText().toString())){
             Intent it =new Intent(IntroductionActivity.this,PlayActivity.class);
             it.putExtra("courseTerraceId",getIntent().getStringExtra("courseTerraceId"));
+            it.putExtra("title",introduction.getCourseName());
             startActivity(it);
         }else {
             xuanke();

@@ -28,13 +28,13 @@
                 android:id="@+id/cname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跨文化管理澶渊之盟"
                 android:textColor="@color/texttitle"
                 android:layout_toStartOf="@+id/score"
                 android:layout_alignParentStart="true"
                 android:layout_marginRight="@dimen/dp_4"
                 android:lines="2"
                 android:ellipsize="end"
+                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/score"
@@ -99,13 +99,13 @@
                 android:id="@+id/cname2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跨文化管理澶渊之盟"
                 android:layout_toStartOf="@+id/score2"
                 android:layout_alignParentStart="true"
                 android:textColor="@color/texttitle"
                 android:layout_marginRight="@dimen/dp_4"
                 android:lines="2"
                 android:ellipsize="end"
+                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/score2"
