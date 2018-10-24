@@ -107,8 +107,8 @@ public class HomePageTab3Fragment extends BaseFragment {
         title.setText("学习");
         title.setTextColor(Color.WHITE);
         textRight.setText("编辑");
-        textRight.setVisibility(View.GONE);
         textRight.setTextColor(Color.WHITE);
+        textRight.setVisibility(View.GONE);
         initRecyclerView();
 
 
@@ -137,10 +137,6 @@ public class HomePageTab3Fragment extends BaseFragment {
     public void initRefreshLayout() {
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            int size=fldatas.size();
-            for (int i=0;i<size;i++){
-                fldatas.get(i).setShow(false);
-            }
             textRight.setText("编辑");
             homeRecAdapter1.notifyDataSetChanged();
             pageNum = 1;

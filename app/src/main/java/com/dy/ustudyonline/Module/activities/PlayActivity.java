@@ -29,6 +29,8 @@ import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.video.NormalGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +43,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PlayActivity extends BasePlayerActivity {
     private String url = "";
+    private int currentItem=0;
     private String titleT = "";
     int pageNum=1;
     @BindView(R.id.toolbar_tab)
@@ -79,12 +82,13 @@ public class PlayActivity extends BasePlayerActivity {
         initViewPager();
     }
 
+
     public void initViewPager(){
         List<String> titles;
         String[] PLANETS = {"课件","作业","答疑","评价","资料"};
         titles= Arrays.asList(PLANETS);
         List<Fragment> mFragments=new ArrayList<>();
-        PlayTab1Fragment playTab1Fragment=new PlayTab1Fragment();
+        PlayTab1Fragment playTab1Fragment= PlayTab1Fragment.newInstance(playItems);
         PlayTab1Fragment playTab1Fragment2=new PlayTab1Fragment();
         PlayTab1Fragment playTab1Fragment3=new PlayTab1Fragment();
         PlayTab1Fragment playTab1Fragment4=new PlayTab1Fragment();
@@ -135,10 +139,11 @@ public class PlayActivity extends BasePlayerActivity {
 
                             }
                             if(!isOk&&playItems.size()>0){
-                                url=playItems.get(0).getChapter_url();
-                                titleT=playItems.get(0).getChapter_name();
+                                url=playItems.get(currentItem).getChapter_url();
+                                titleT=playItems.get(currentItem).getChapter_name();
                                 initVideoBuilderMode();
                                 isOk=true;
+                                EventBus.getDefault().post("refreshTab1");
                             }
 
                             break;
@@ -163,6 +168,54 @@ public class PlayActivity extends BasePlayerActivity {
                                )
                 .load(url)
                 .into(imageView);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        save();
+
+    }
+
+    public void save(){
+        if(detailPlayer!=null&&playItems.size()>0){
+            int nowp=detailPlayer.getCurrentPositionWhenPlaying();
+            if(nowp>2000){
+            int duration=detailPlayer.getDuration();
+            float length=Float.parseFloat(playItems.get(currentItem).getChapter_length());
+            float time=length*nowp/duration;
+            String id=PreferenceUtil.getStringPRIVATE("id","");
+            String courseTerraceId=  getIntent().getStringExtra("courseTerraceId");
+
+            saveRecord(id,playItems.get(currentItem).getId(),time,playItems.get(currentItem).getChapter_length(),courseTerraceId);
+            }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    public void saveRecord(String uid, String chapterId,float time,String maxTime,String courseTerraceId){
+        RetrofitHelper.getIntroductionAPI()
+                .saveRecord(uid,chapterId,time,maxTime,courseTerraceId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+                           // ToastUtil.ShortToast(apiMsg.getMessage());
+
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                }, throwable -> {
+                    //ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
     }
 
     @Override

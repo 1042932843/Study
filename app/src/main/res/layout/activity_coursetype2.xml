@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab2Fragment">
+
+    <include layout="@layout/toolbar"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/tvt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="没有内容？"
+                    android:textColor="@color/textcolor"
+                    />
+                <TextView
+                    android:id="@+id/tpjump"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="尝试刷新站点"
+                    android:layout_below="@+id/tvt"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_margin="@dimen/dp_6"
+                    />
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:background="@color/background"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/okl"/>
+            <RelativeLayout
+                android:id="@+id/okl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dp_8"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/ok"
+                android:layout_width="@dimen/dp_300"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_theme_solid_bg"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12"
+                android:text="确 定"
+                android:textColor="@android:color/white" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

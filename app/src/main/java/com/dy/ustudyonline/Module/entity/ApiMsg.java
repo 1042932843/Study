@@ -44,4 +44,14 @@ public class ApiMsg {
     }
 
     String resultInfo;
+
+    public String getCourseList() {
+        return CourseList;
+    }
+
+    public void setCourseList(String courseList) {
+        CourseList = courseList;
+    }
+
+    String CourseList;
 }

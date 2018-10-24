@@ -24,6 +24,8 @@ import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.Crash.CrashHandler;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
+import com.jiang.android.pbutton.CProgressButton;
+import com.liulishuo.filedownloader.FileDownloader;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
 import com.pgyersdk.crash.PgyCrashManager;
@@ -59,6 +61,9 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
         registerActivityLifecycleCallbacks(this);
         PgyCrashManager.register(this);
         initImagePicker();
+
+        FileDownloader.setup(this);
+        CProgressButton.initStatusString(new String[]{"下载","暂停","完成","错误","删除"});
     }
 
     @Override

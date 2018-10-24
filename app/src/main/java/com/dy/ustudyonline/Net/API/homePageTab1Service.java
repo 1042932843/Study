@@ -26,4 +26,8 @@ public interface homePageTab1Service {
     Observable<ResponseBody> uploadPicture (@Field("userId") String userId,
                                        @Field("pictureBase64Source") String deviceType);
 
+    @POST("appOrdinaryUser/moreCourse.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> moreCourse (@Field("type") String type);
+
 }

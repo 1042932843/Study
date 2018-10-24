@@ -115,10 +115,7 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
 
         }
     }
-    OnItemCheckedListener onItemCheckedListener;
-    public interface OnItemCheckedListener{
-        void Checked(int position,boolean checked);
-    }
+
 
     OnItemClickListener onItemClickListener;
     public interface OnItemClickListener{
@@ -128,7 +125,10 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
     public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
         this.onItemClickListener=onItemClickListener;
     }
-
+    OnItemCheckedListener onItemCheckedListener;
+    public interface OnItemCheckedListener{
+        void Checked(int position,boolean checked);
+    }
     public void setOnItemCheckedListener(OnItemCheckedListener onItemCheckedListener ){
         this.onItemCheckedListener=onItemCheckedListener;
     }

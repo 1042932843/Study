@@ -19,4 +19,17 @@ public interface homePageTab2Service {
     @FormUrlEncoded
     Observable<ResponseBody> choseCourseFirstPage(@Field("userId") String userId);
 
+    @POST("appCourse/choseCourseSecondPage.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> choseCourseSecondPage(@Field("userId") String userId,
+                                                   @Field("courseTypeId") String courseTypeId);
+    @POST("appCourse/choseCourseThirdPage.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> choseCourseThirdPage(@Field("userId") String userId,
+                                                   @Field("courseTypeId2") String courseTypeId);
+
+    @POST("appCourse/choseCourse.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> choseCourse(@Field("userId") String userId,
+                                                  @Field("courseTerrace_ids") String courseTypeId);
 }

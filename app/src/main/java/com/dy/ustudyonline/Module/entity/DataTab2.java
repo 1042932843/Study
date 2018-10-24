@@ -35,5 +35,15 @@ public class DataTab2 {
     }
 
     String courseTypeId;
+
+    public String getCourseTypeId2() {
+        return courseTypeId2;
+    }
+
+    public void setCourseTypeId2(String courseTypeId2) {
+        this.courseTypeId2 = courseTypeId2;
+    }
+
+    String courseTypeId2;
    List<DataTab2Item> courseList;
 }

@@ -79,5 +79,34 @@ public class DataTab2Item {
    String coursePoint;
    String chapeterCount;
    String courseImg;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    String imageUrl;
    String courseName;
+    public boolean Show;
+
+    public boolean isShow() {
+        return Show;
+    }
+
+    public void setShow(boolean show) {
+        Show = show;
+    }
+
+    public boolean isSelect() {
+        return Select;
+    }
+
+    public void setSelect(boolean select) {
+        Select = select;
+    }
+
+    public boolean Select;
 }

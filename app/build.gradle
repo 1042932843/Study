@@ -106,7 +106,9 @@ dependencies {
     implementation 'com.shuyu:GSYVideoPlayer:6.0.0-beta'
     implementation 'com.google.zxing:core:3.2.0'
     implementation project(path: ':imagepicker')
+    implementation project(path: ':pbutton')
     implementation 'com.alibaba:fastjson:1.2.47'
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    implementation 'com.liulishuo.filedownloader:library:1.7.5'
 
 }

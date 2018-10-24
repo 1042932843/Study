@@ -31,8 +31,11 @@ import com.dy.ustudyonline.Adapter.UltraPagerAdapter;
 import com.dy.ustudyonline.Adapter.UltraPagerTwoCenterTypeAdapter;
 import com.dy.ustudyonline.Adapter.helper.FullyLinearLayoutManager;
 import com.dy.ustudyonline.Base.BaseFragment;
+import com.dy.ustudyonline.Module.activities.CourseType2Activity;
+import com.dy.ustudyonline.Module.activities.CourseTypeActivity;
 import com.dy.ustudyonline.Module.activities.IntroductionActivity;
 import com.dy.ustudyonline.Module.activities.MainActivity;
+import com.dy.ustudyonline.Module.activities.Tab1CourseType2Activity;
 import com.dy.ustudyonline.Module.entity.Ad;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.Banner;
@@ -115,6 +118,45 @@ public class HomePageTab1Fragment extends BaseFragment {
     UltraViewPager ultraViewPager1;
     UltraPagerTwoCenterTypeAdapter ultraPagerTwoCenterTypeAdapter;
     List<DataTab1Item> ultraViewPager1datas=new ArrayList<>();
+    @OnClick(R.id.newsmore)
+    public void newsmore(){
+        Intent intent=new Intent(getActivity(), Tab1CourseType2Activity.class);
+        intent.putExtra("type","ts");
+        intent.putExtra("courseTypeName","最新课程");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.hotmore)
+    public void hotmore(){
+        Intent intent=new Intent(getActivity(), Tab1CourseType2Activity.class);
+        intent.putExtra("type","amout");
+        intent.putExtra("courseTypeName","热门课程");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.lovemore)
+    public void lovemore(){
+        Intent intent=new Intent(getActivity(), Tab1CourseType2Activity.class);
+        intent.putExtra("type","");
+        intent.putExtra("courseTypeName","猜你喜欢");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.edu_promore)
+    public void edu_promore(){
+        Intent intent=new Intent(getActivity(), Tab1CourseType2Activity.class);
+        intent.putExtra("type","edu_pro");
+        intent.putExtra("courseTypeName","学历提升");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.first_learnmore)
+    public void first_learnmore(){
+        Intent intent=new Intent(getActivity(), Tab1CourseType2Activity.class);
+        intent.putExtra("type","first_learn");
+        intent.putExtra("courseTypeName","平台先修课");
+        startActivity(intent);
+    }
 
     /**
      * 最热课程模块

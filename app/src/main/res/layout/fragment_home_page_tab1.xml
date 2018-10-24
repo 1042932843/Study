@@ -161,7 +161,8 @@
                     android:textColor="@color/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/newsmore"/>
 
             </android.support.constraint.ConstraintLayout>
 
@@ -207,7 +208,8 @@
                     android:textColor="@color/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/hotmore"/>
 
             </android.support.constraint.ConstraintLayout>
 
@@ -253,7 +255,8 @@
                     android:textColor="@color/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/lovemore"/>
 
             </android.support.constraint.ConstraintLayout>
 
@@ -300,7 +303,8 @@
                     android:textColor="@color/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/edu_promore"/>
 
             </android.support.constraint.ConstraintLayout>
 
@@ -346,7 +350,8 @@
                     android:textColor="@color/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/first_learnmore"/>
 
             </android.support.constraint.ConstraintLayout>
 

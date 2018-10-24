@@ -5,4 +5,59 @@
     android:orientation="vertical"
     tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab2Fragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16">
+
+        <RelativeLayout
+            android:id="@+id/lan"
+            android:layout_width="@dimen/dp_4"
+            android:layout_height="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary">
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:layout_toRightOf="@+id/lan"
+            android:text="章节目录"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_18"
+            android:textColor="@color/texttitle" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true">
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+        <TextView
+            android:id="@+id/dowall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部下载"
+            android:gravity="center"
+            android:textSize="@dimen/sp_12"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:background="@color/background"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
 </LinearLayout>

@@ -35,4 +35,12 @@ public interface IntroductionService {
                                            @Field("courseTerraceId") String courseTerraceId,
                                            @Field("pageNum") int pageNum,
                                            @Field("flag") String person);
+
+    @POST("appPlayVideo/saveRecord.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> saveRecord(@Field("userId") String userId,
+                                           @Field("chapterId") String chapterId,
+                                           @Field("time") float time,
+                                           @Field("maxTime") String maxTime,
+                                           @Field("courseTerraceId") String courseTerraceId);
 }

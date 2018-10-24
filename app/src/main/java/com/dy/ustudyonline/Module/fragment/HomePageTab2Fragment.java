@@ -62,7 +62,11 @@ public class HomePageTab2Fragment extends BaseFragment {
     @BindView(R.id.tip)RelativeLayout tip;
     @OnClick(R.id.tip)
     public void jump(){
-
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            datas.clear();
+            loadData();
+        });
     }
     public HomePageTab2Fragment() {
         // Required empty public constructor
@@ -162,7 +166,6 @@ public class HomePageTab2Fragment extends BaseFragment {
                               adapter.notifyDataSetChanged();
 
                             }else{
-                                ToastUtil.ShortToast(a);
                                 tip.setVisibility(View.VISIBLE);
                             }
 

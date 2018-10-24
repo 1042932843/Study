@@ -329,13 +329,12 @@ public class MainActivity extends BaseActivity {
         update();
         initBottomNavigationBar();
         initFragments();
-        LoadData();
         ver.setHint("版本号 "+DuskyApp.getInstance().getAppVersionName(this));
         name.setText(PreferenceUtil.getStringPRIVATE("realName","未登录"));
         if(!TextUtils.isEmpty(PreferenceUtil.getStringPRIVATE("imageUrl",""))){
             Glide.with(MainActivity.this).load(PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
         }
-
+        LoadData();
     }
 
     @SuppressLint("CheckResult")
@@ -345,7 +344,6 @@ public class MainActivity extends BaseActivity {
         pdialog.show();
         RetrofitHelper.getMainAPI()
                 .changeTList(PreferenceUtil.getStringPRIVATE("id",""))
-                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bean -> {
@@ -384,7 +382,6 @@ public class MainActivity extends BaseActivity {
     private void loadDefSite() {
         RetrofitHelper.getMainAPI()
                 .utList(PreferenceUtil.getStringPRIVATE("id",""))
-                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bean -> {
@@ -464,7 +461,7 @@ public class MainActivity extends BaseActivity {
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
-                viewPager.setCurrentItem(position);
+                viewPager.setCurrentItem(position,false);
             }
 
             @Override

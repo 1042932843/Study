@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="@dimen/dp_8"
+    android:layout_marginEnd="@dimen/dp_8"
+    android:layout_marginTop="@dimen/dp_8"
+    android:layout_marginBottom="@dimen/dp_8"
+    android:background="@drawable/bg_round_corner_line_bg"
+    android:paddingTop="@dimen/dp_12"
+    android:paddingBottom="@dimen/dp_12"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_8"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:text="@string/app_name"
+        />
+
+    <com.jiang.android.pbutton.CProgressButton
+
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        app:stroke_width="1dp"
+        app:radius="16dp"
+        app:color="@color/colorPrimary"
+        app:drawable_xml="@drawable/bounder"
+        android:textSize="12sp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/cProgressButton"
+        />
+
+</RelativeLayout>
