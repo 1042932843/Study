@@ -6,6 +6,7 @@ import com.dy.ustudyonline.Net.API.AccountSetService;
 import com.dy.ustudyonline.Net.API.IntroductionService;
 import com.dy.ustudyonline.Net.API.LoginRegisterService;
 import com.dy.ustudyonline.Net.API.MainService;
+import com.dy.ustudyonline.Net.API.PlayService;
 import com.dy.ustudyonline.Net.API.homePageTab1Service;
 import com.dy.ustudyonline.Net.API.homePageTab2Service;
 import com.dy.ustudyonline.Net.API.homePageTab3Service;
@@ -76,6 +77,10 @@ public class RetrofitHelper {
 
   public static homePageTab3Service gethomePageTab3API() {
     return createApi(homePageTab3Service.class, ApiConstants.Base_URL);
+  }
+
+  public static PlayService getPlayAPI() {
+    return createApi(PlayService.class, ApiConstants.Base_URL);
   }
 
   /**

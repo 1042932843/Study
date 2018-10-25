@@ -20,6 +20,7 @@
             android:layout_height="@dimen/dp_32"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_16"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:src="@drawable/back"/>
         <TextView
             android:id="@+id/title"

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +20,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Adapter.FragmentAdapter;
 import com.dy.ustudyonline.Base.BasePlayerActivity;
+import com.dy.ustudyonline.Design.ViewPager.NoAnimationViewPager;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.PlayItem;
 import com.dy.ustudyonline.Module.fragment.PlayTab1Fragment;
+import com.dy.ustudyonline.Module.fragment.PlayTab4Fragment;
 import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
@@ -30,6 +33,8 @@ import com.shuyu.gsyvideoplayer.video.NormalGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,16 +48,16 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PlayActivity extends BasePlayerActivity {
     private String url = "";
-    private int currentItem=0;
     private String titleT = "";
     int pageNum=1;
     @BindView(R.id.toolbar_tab)
     TabLayout tabs;
     @BindView(R.id.view_pager)
-    ViewPager view_pager;
+    NoAnimationViewPager view_pager;
 
     boolean isOk=false;
     List<PlayItem> playItems=new ArrayList<>();
+    PlayItem current;
 
     @BindView(R.id.imgLeft)
     ImageView imgLeft;
@@ -81,7 +86,11 @@ public class PlayActivity extends BasePlayerActivity {
         imgLeft.setImageResource(R.drawable.back);
         initViewPager();
     }
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
     public void initViewPager(){
         List<String> titles;
@@ -91,12 +100,12 @@ public class PlayActivity extends BasePlayerActivity {
         PlayTab1Fragment playTab1Fragment= PlayTab1Fragment.newInstance(playItems);
         PlayTab1Fragment playTab1Fragment2=new PlayTab1Fragment();
         PlayTab1Fragment playTab1Fragment3=new PlayTab1Fragment();
-        PlayTab1Fragment playTab1Fragment4=new PlayTab1Fragment();
+        PlayTab4Fragment playTab4Fragment=PlayTab4Fragment.newInstance(getIntent().getStringExtra("courseTerraceId"));
         PlayTab1Fragment playTab1Fragment5=new PlayTab1Fragment();
         mFragments.add(playTab1Fragment);
         mFragments.add(playTab1Fragment2);
         mFragments.add(playTab1Fragment3);
-        mFragments.add(playTab1Fragment4);
+        mFragments.add(playTab4Fragment);
         mFragments.add(playTab1Fragment5);
 
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), mFragments, titles);
@@ -139,8 +148,14 @@ public class PlayActivity extends BasePlayerActivity {
 
                             }
                             if(!isOk&&playItems.size()>0){
-                                url=playItems.get(currentItem).getChapter_url();
-                                titleT=playItems.get(currentItem).getChapter_name();
+                                current=playItems.get(0);
+                                if(!TextUtils.isEmpty(current.getLocalUrl())){
+                                    url=current.getLocalUrl();
+                                }else{
+                                    url=current.getChapter_url();
+                                }
+
+                                titleT=current.getChapter_name();
                                 initVideoBuilderMode();
                                 isOk=true;
                                 EventBus.getDefault().post("refreshTab1");
@@ -182,14 +197,26 @@ public class PlayActivity extends BasePlayerActivity {
             int nowp=detailPlayer.getCurrentPositionWhenPlaying();
             if(nowp>2000){
             int duration=detailPlayer.getDuration();
-            float length=Float.parseFloat(playItems.get(currentItem).getChapter_length());
+            float length=Float.parseFloat(current.getChapter_length());
             float time=length*nowp/duration;
             String id=PreferenceUtil.getStringPRIVATE("id","");
             String courseTerraceId=  getIntent().getStringExtra("courseTerraceId");
-
-            saveRecord(id,playItems.get(currentItem).getId(),time,playItems.get(currentItem).getChapter_length(),courseTerraceId);
+            saveRecord(id,current.getId(),time,current.getChapter_length(),courseTerraceId);
             }
         }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(PlayItem p) {
+        save();
+        current=p;
+        if(!TextUtils.isEmpty(current.getLocalUrl())){
+            url=current.getLocalUrl();
+        }else{
+            url=current.getChapter_url();
+        }
+        titleT=current.getChapter_name();
+        initVideoBuilderMode();
+        //detailPlayer.seekTo();
     }
 
     @SuppressLint("CheckResult")

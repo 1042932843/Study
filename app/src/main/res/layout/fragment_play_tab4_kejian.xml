@@ -1,0 +1,183 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rlayout"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16">
+
+        <RelativeLayout
+            android:id="@+id/lan"
+            android:layout_width="@dimen/dp_4"
+            android:layout_height="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary">
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:layout_toRightOf="@+id/lan"
+            android:text="课件评价"
+            android:textColor="@color/texttitle"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
+
+            <TextView
+                android:id="@+id/dowall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="全部评价>"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="星级评分:"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16"
+        android:background="@drawable/btn_theme_solid_bg"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_8"
+        android:layout_margin="@dimen/dp_12"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:id="@+id/you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:text="优"
+            android:textColor="@color/textcolor"
+            android:layout_marginRight="@dimen/dp_12"/>
+        <RadioButton
+            android:id="@+id/liang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="良"
+            android:textColor="@color/textcolor"
+            android:layout_marginRight="@dimen/dp_12"/>
+        <RadioButton
+            android:id="@+id/zhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="中"
+            android:textColor="@color/textcolor"
+            android:layout_marginRight="@dimen/dp_12"/>
+        <RadioButton
+            android:id="@+id/cha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="差"
+            android:textColor="@color/textcolor"
+            android:layout_marginRight="@dimen/dp_12"/>
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="填写评价:"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16"
+        android:background="@drawable/btn_theme_solid_bg"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_8"
+        android:layout_margin="@dimen/dp_12"/>
+
+    <EditText
+        android:id="@+id/edittext"
+        android:hint="限输入200字以内"
+        android:maxLength="200"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_160"
+        android:gravity="left|top"
+        android:textColor="@color/textcolor"
+        android:textSize="@dimen/sp_14"
+        android:background="@drawable/bg_round_corner_line_bg"
+        android:layout_margin="@dimen/dp_12"
+        android:padding="@dimen/dp_6"/>
+
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/200"
+        android:textColor="@color/texthint"
+        android:gravity="right|center"
+        android:layout_marginRight="@dimen/dp_12"
+        />
+
+</LinearLayout>
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_12"
+        android:layout_below="@+id/rlayout"
+        android:background="@drawable/btn_theme_solid_bg"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
+        android:text="发表评价"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
+</ScrollView>

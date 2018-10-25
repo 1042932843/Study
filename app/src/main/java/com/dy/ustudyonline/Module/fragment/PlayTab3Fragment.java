@@ -1,19 +1,17 @@
 package com.dy.ustudyonline.Module.fragment;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.dy.studyonline.R;
-import com.dy.ustudyonline.Adapter.PlayTab1RecAdapter;
+import com.dy.ustudyonline.Adapter.PlayTab3RecAdapter;
 import com.dy.ustudyonline.Base.BaseFragment;
-import com.dy.ustudyonline.Module.entity.PlayItem;
+import com.dy.ustudyonline.Module.entity.PlayDataTab3Item;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,8 +21,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.dy.ustudyonline.Module.activities.MainActivity.refreshData;
-
 /**
  * Name: PlayTab1Fragment
  * Author: Dusky
@@ -32,14 +28,13 @@ import static com.dy.ustudyonline.Module.activities.MainActivity.refreshData;
  * Comment: //课件
  * Date: 2018-10-15 11:02
  */
-public class PlayTab1Fragment extends BaseFragment {
+public class PlayTab3Fragment extends BaseFragment {
 
-    private  List<PlayItem> playItems ;
-    PlayTab1RecAdapter adapter;
+    private  List<PlayDataTab3Item> playDataTab3Items ;
+    PlayTab3RecAdapter adapter;
     @BindView(R.id.recyclerview)RecyclerView recyclerView;
-    public static PlayTab1Fragment newInstance(List<PlayItem> playItems) {
-        PlayTab1Fragment fragment=  new PlayTab1Fragment();
-        fragment.playItems=playItems;
+    public static PlayTab3Fragment newInstance() {
+        PlayTab3Fragment fragment=  new PlayTab3Fragment();
         return fragment;
     }
 
@@ -61,11 +56,11 @@ public class PlayTab1Fragment extends BaseFragment {
     protected void initRecyclerView() {
         //去掉recyclerView动画处理闪屏
         ((SimpleItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        adapter=new PlayTab1RecAdapter(playItems,getContext());
-        adapter.setOnItemClickListener(new PlayTab1RecAdapter.OnItemClickListener() {
+        adapter=new PlayTab3RecAdapter(playDataTab3Items,getContext());
+        adapter.setOnItemClickListener(new PlayTab3RecAdapter.OnItemClickListener() {
             @Override
-            public void onClick(PlayItem p) {
-                EventBus.getDefault().post(p);
+            public void onClick() {
+
             }
         });
 
@@ -78,7 +73,7 @@ public class PlayTab1Fragment extends BaseFragment {
 
     @Override
     public int getLayoutResId() {
-        return R.layout.fragment_play_tab1;
+        return R.layout.fragment_play_tab3;
     }
 
     @Override

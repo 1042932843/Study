@@ -82,7 +82,7 @@ public class Tab3RecAdapter extends RecyclerView.Adapter<Tab3RecAdapter.ViewHold
                     onItemClickListener.onClick(position);
                 }
             });
-            holder. itemView.setOnLongClickListener( new View.OnLongClickListener() {
+            holder.itemView.setOnLongClickListener( new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     onItemClickListener.onLongClick(position);
