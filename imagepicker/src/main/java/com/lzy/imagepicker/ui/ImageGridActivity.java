@@ -97,7 +97,9 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
             directPhoto = data.getBooleanExtra(EXTRAS_TAKE_PICKERS, false); // 默认不是直接打开相机
             if (directPhoto) {
                 if (!(checkPermission(Manifest.permission.CAMERA))) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, ImageGridActivity.REQUEST_PERMISSION_CAMERA);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        this.requestPermissions(new String[]{Manifest.permission.CAMERA}, ImageGridActivity.REQUEST_PERMISSION_CAMERA);
+                    }
                 } else {
                     imagePicker.takePicture(this, ImagePicker.REQUEST_CODE_TAKE);
                 }
@@ -135,7 +137,9 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
             if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 new ImageDataSource(this, null, this);
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_STORAGE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions( new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_STORAGE);
+                }
             }
         } else {
             new ImageDataSource(this, null, this);
@@ -289,15 +293,15 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
             mBtnOk.setEnabled(true);
             mBtnPre.setEnabled(true);
             mBtnPre.setText(getResources().getString(R.string.ip_preview_count, imagePicker.getSelectImageCount()));
-            mBtnPre.setTextColor(ContextCompat.getColor(this, R.color.ip_text_primary_inverted));
-            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.ip_text_primary_inverted));
+            mBtnPre.setTextColor(getResources().getColor(R.color.ip_text_primary_inverted));
+            mBtnOk.setTextColor(getResources().getColor(R.color.ip_text_primary_inverted));
         } else {
             mBtnOk.setText(getString(R.string.ip_complete));
             mBtnOk.setEnabled(false);
             mBtnPre.setEnabled(false);
             mBtnPre.setText(getResources().getString(R.string.ip_preview));
-            mBtnPre.setTextColor(ContextCompat.getColor(this, R.color.ip_text_secondary_inverted));
-            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.ip_text_secondary_inverted));
+            mBtnPre.setTextColor(getResources().getColor( R.color.ip_text_secondary_inverted));
+            mBtnOk.setTextColor(getResources().getColor(R.color.ip_text_secondary_inverted));
         }
 //        mImageGridAdapter.notifyDataSetChanged();
 //        mRecyclerAdapter.notifyItemChanged(position); // 17/4/21 fix the position while click img to preview
