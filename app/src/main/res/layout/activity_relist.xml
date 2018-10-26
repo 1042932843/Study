@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_above="@+id/eidt_layout"
+>
+    <include layout="@layout/toolbar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp_12"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titlev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/texttitle"/>
+
+            <TextView
+                android:id="@+id/com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:textColor="@color/textcolor"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp_6">
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/texthint"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/texthint"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="#D4D4D4"
+                android:layout_marginTop="@dimen/dp_8"/>
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="全部回复"
+                android:textColor="@color/texthint"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="@dimen/dp_6"
+                android:overScrollMode="never"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+</LinearLayout>
+<android.support.v7.widget.CardView
+android:id="@+id/eidt_layout"
+android:visibility="visible"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:layout_marginTop="8dp"
+app:cardBackgroundColor="@android:color/white"
+app:cardCornerRadius="3dp"
+app:cardElevation="6dp"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_48"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_16"
+    >
+
+    <com.dy.ustudyonline.Design.keyEditText.KeyEditText
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_toStartOf="@+id/send"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:hint="请输入..."
+        android:textSize="@dimen/sp_14"
+        android:layout_toLeftOf="@+id/send" />
+
+    <ImageView
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/send"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
+</android.support.v7.widget.CardView>
+</RelativeLayout>

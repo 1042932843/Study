@@ -25,4 +25,26 @@ public interface PlayService {
     @POST("appCourse/peCommentList.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> peCommentList(@Field("courseTerraceId") String userId);
+
+    //Tab3
+    @POST("appCourse/courseQuizList.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> courseQuizList(@Field("courseTerraceId") String userId);
+
+    @POST("appCourse/courseQuiz.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> courseQuiz(@Field("courseTerraceId") String courseTerraceId,
+                                        @Field("userId") String userId,
+                                        @Field("qesTitle") String qesTitle,
+                                        @Field("qestion") String question);
+
+    @POST("appCourse/qesComment.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> qesComment(@Field("comment") String comment,
+                                        @Field("userId") String userId,
+                                        @Field("qesId") String qesId);
+
+    @POST("appCourse/qesCommentList.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> qesCommentList(@Field("qesId") String qesTitle);
 }

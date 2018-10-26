@@ -5,24 +5,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dy.studyonline.R;
+import com.dy.ustudyonline.Module.entity.EvaluateItem;
 import com.dy.ustudyonline.Module.entity.PlayDataTab3Item;
 
 import java.util.List;
+
+import static com.dy.ustudyonline.Base.DuskyApp.optionsRoundedCircle;
 
 /**
  * @AUTHOR: dsy
  * @TIME: 2018/4/17
  * @DESCRIPTION:
  */
-public class PlayTab3RecAdapter extends RecyclerView.Adapter<PlayTab3RecAdapter.ViewHolder>{
+public class AnsRecAdapter extends RecyclerView.Adapter<AnsRecAdapter.ViewHolder>{
 
     private List<PlayDataTab3Item> home;
     private Context context;
 
-    public PlayTab3RecAdapter(List<PlayDataTab3Item> home, Context context) {
+    public AnsRecAdapter(List<PlayDataTab3Item> home, Context context) {
         this.home = home;
         this.context=context;
     }
@@ -35,7 +40,7 @@ public class PlayTab3RecAdapter extends RecyclerView.Adapter<PlayTab3RecAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.play_tab3_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.answer_item, parent, false);
         // 实例化viewholder
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
@@ -47,33 +52,20 @@ public class PlayTab3RecAdapter extends RecyclerView.Adapter<PlayTab3RecAdapter.
             return;
         }
         // 绑定数据
-        holder.title1.setText(home.get(position).getTitle());
-        holder.commet.setText(home.get(position).getComment());
+        holder.title1.setText(home.get(position).getUserName());
         holder.ts.setText(home.get(position).getTs());
-        holder.username.setText(home.get(position).getUserName());
+        holder.time1.setText(home.get(position).getComment());
+        Glide.with(context).load(home.get(position).getImgUrl()).apply(optionsRoundedCircle).into(holder.userhead);
         //单独对应类型的设置事件
         if( onItemClickListener!= null){
             holder.itemView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onReClick(home.get(position));
+                    //onItemClickListener.onClick(home.get(position).getNewsId(),home.get(position).getNewsTitle());
                 }
             });
 
         }
-        holder.re.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onReClick(home.get(position));
-            }
-        });
-        holder.zan.setVisibility(View.GONE);
-        holder.zan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onZanClick();
-            }
-        });
 
     }
 
@@ -84,24 +76,23 @@ public class PlayTab3RecAdapter extends RecyclerView.Adapter<PlayTab3RecAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title1,commet,username,ts,re,zan;
+        TextView title1,time1,ts;
+        ImageView userhead;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            userhead=(ImageView)itemView.findViewById(R.id.user_head) ;
             title1 = (TextView) itemView.findViewById(R.id.title1);
-            commet = (TextView) itemView.findViewById(R.id.commet);
-            username = (TextView) itemView.findViewById(R.id.username);
-            ts=(TextView) itemView.findViewById(R.id.ts);
-            re=(TextView) itemView.findViewById(R.id.re);
-            zan=(TextView) itemView.findViewById(R.id.zan);
+
+            ts = (TextView) itemView.findViewById(R.id.ts);
+            time1=(TextView) itemView.findViewById(R.id.time1);
 
         }
     }
 
     OnItemClickListener onItemClickListener;
     public interface OnItemClickListener{
-        void onReClick(PlayDataTab3Item item);
-        void onZanClick();
+        void onClick(String id, String title);
     }
     public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
         this.onItemClickListener=onItemClickListener;

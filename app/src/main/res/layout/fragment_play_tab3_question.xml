@@ -1,0 +1,86 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/rlayout"
+    android:layout_alignParentTop="true"
+    android:background="@android:color/white"
+    >
+    <include layout="@layout/toolbar"/>
+    <View
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="#D4D4D4"/>
+
+    <EditText
+        android:id="@+id/edittext0"
+        android:hint="标题"
+        android:maxLength="32"
+        android:lines="1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_32"
+        android:gravity="left|top"
+        android:textColor="@color/textcolor"
+        android:textSize="@dimen/sp_14"
+        android:background="@drawable/bg_round_corner_line_bg"
+        android:layout_margin="@dimen/dp_12"
+        android:padding="@dimen/dp_6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_12"
+        android:background="@drawable/btn_theme_solid_bg"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_6"
+        android:text="详细描述："
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16" />
+
+    <EditText
+        android:id="@+id/edittext"
+        android:hint="限输入200字以内"
+        android:maxLength="200"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_160"
+        android:gravity="left|top"
+        android:textColor="@color/textcolor"
+        android:textSize="@dimen/sp_14"
+        android:background="@drawable/bg_round_corner_line_bg"
+        android:layout_margin="@dimen/dp_12"
+        android:padding="@dimen/dp_6"/>
+
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/200"
+        android:textColor="@color/texthint"
+        android:gravity="right|center"
+        android:layout_marginRight="@dimen/dp_12"
+        />
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlayout"
+        android:layout_margin="@dimen/dp_12"
+        android:background="@drawable/btn_theme_solid_bg"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
+        android:text="提 问"
+        android:textColor="@android:color/white" />
+</LinearLayout>
+
+
+</RelativeLayout>

@@ -24,6 +24,7 @@ import com.dy.ustudyonline.Design.ViewPager.NoAnimationViewPager;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.PlayItem;
 import com.dy.ustudyonline.Module.fragment.PlayTab1Fragment;
+import com.dy.ustudyonline.Module.fragment.PlayTab3Fragment;
 import com.dy.ustudyonline.Module.fragment.PlayTab4Fragment;
 import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
@@ -99,12 +100,12 @@ public class PlayActivity extends BasePlayerActivity {
         List<Fragment> mFragments=new ArrayList<>();
         PlayTab1Fragment playTab1Fragment= PlayTab1Fragment.newInstance(playItems);
 
-        PlayTab1Fragment playTab1Fragment3=new PlayTab1Fragment();
+        PlayTab3Fragment playTab3Fragment=PlayTab3Fragment.newInstance(getIntent().getStringExtra("courseTerraceId"));
         PlayTab4Fragment playTab4Fragment=PlayTab4Fragment.newInstance(getIntent().getStringExtra("courseTerraceId"));
         //PlayTab1Fragment playTab1Fragment5=new PlayTab1Fragment();
         mFragments.add(playTab1Fragment);
 
-        mFragments.add(playTab1Fragment3);
+        mFragments.add(playTab3Fragment);
         mFragments.add(playTab4Fragment);
         //mFragments.add(playTab1Fragment5);
 

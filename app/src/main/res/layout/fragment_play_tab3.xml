@@ -1,13 +1,18 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.dy.ustudyonline.Module.fragment.HomePageTab2Fragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp_8"
         android:paddingLeft="@dimen/dp_16"
         android:paddingRight="@dimen/dp_16">
@@ -27,7 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_4"
             android:layout_toRightOf="@+id/lan"
-            android:text="章节目录"
+            android:text="课程答疑"
             android:textStyle="bold"
             android:textSize="@dimen/sp_18"
             android:textColor="@color/texttitle" />
@@ -48,15 +53,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_12"
+                android:text="提问>"
+                android:padding="@dimen/dp_8"
+                android:background="@drawable/touch_bg"/>
         </LinearLayout>
     </RelativeLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:overScrollMode="never"
-                android:id="@+id/recyclerview"
+        <View
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="#D4D4D4"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/touch_bg"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/tvt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="目前没有人提问"
+                android:textColor="@color/textcolor"
+                />
+            <TextView
+                android:id="@+id/tpjump"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="尝试刷新"
+                android:layout_below="@+id/tvt"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="@dimen/dp_6"
+                />
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    </LinearLayout>
 
-
-</LinearLayout>
+</RelativeLayout>

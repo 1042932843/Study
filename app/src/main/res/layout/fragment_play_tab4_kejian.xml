@@ -64,6 +64,7 @@
                 android:gravity="center"
                 android:text="全部评价>"
                 android:textSize="@dimen/sp_12"
+                android:padding="@dimen/dp_8"
                 android:background="@drawable/touch_bg"/>
         </LinearLayout>
     </RelativeLayout>
@@ -71,7 +72,7 @@
         android:layout_marginTop="@dimen/dp_8"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
-        android:background="@color/background"/>
+        android:background="#D4D4D4"/>
 
     <TextView
         android:layout_width="wrap_content"

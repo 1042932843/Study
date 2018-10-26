@@ -1,9 +1,66 @@
 package com.dy.ustudyonline.Module.entity;
 
+import java.io.Serializable;
+
 /**
  * @AUTHOR: dsy
  * @TIME: 2018/10/25
  * @DESCRIPTION:
  */
-public class PlayDataTab3Item {
+public class PlayDataTab3Item implements Serializable {
+    String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getTs() {
+        return ts;
+    }
+
+    public void setTs(String ts) {
+        this.ts = ts;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getQesId() {
+        return qesId;
+    }
+
+    public void setQesId(String qesId) {
+        this.qesId = qesId;
+    }
+
+    String imgUrl;
+    String ts;
+    String userName;
+    String comment;
+    String qesId;
 }
