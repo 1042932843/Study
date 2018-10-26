@@ -63,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="全部评价>"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_12"
+                android:background="@drawable/touch_bg"/>
         </LinearLayout>
     </RelativeLayout>
     <View

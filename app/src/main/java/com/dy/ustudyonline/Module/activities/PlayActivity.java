@@ -94,19 +94,19 @@ public class PlayActivity extends BasePlayerActivity {
 
     public void initViewPager(){
         List<String> titles;
-        String[] PLANETS = {"课件","作业","答疑","评价","资料"};
+        String[] PLANETS = {"课件","答疑","评价"};//"作业","答疑",,"资料"
         titles= Arrays.asList(PLANETS);
         List<Fragment> mFragments=new ArrayList<>();
         PlayTab1Fragment playTab1Fragment= PlayTab1Fragment.newInstance(playItems);
-        PlayTab1Fragment playTab1Fragment2=new PlayTab1Fragment();
+
         PlayTab1Fragment playTab1Fragment3=new PlayTab1Fragment();
         PlayTab4Fragment playTab4Fragment=PlayTab4Fragment.newInstance(getIntent().getStringExtra("courseTerraceId"));
-        PlayTab1Fragment playTab1Fragment5=new PlayTab1Fragment();
+        //PlayTab1Fragment playTab1Fragment5=new PlayTab1Fragment();
         mFragments.add(playTab1Fragment);
-        mFragments.add(playTab1Fragment2);
+
         mFragments.add(playTab1Fragment3);
         mFragments.add(playTab4Fragment);
-        mFragments.add(playTab1Fragment5);
+        //mFragments.add(playTab1Fragment5);
 
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), mFragments, titles);
         view_pager.setAdapter(adapter);

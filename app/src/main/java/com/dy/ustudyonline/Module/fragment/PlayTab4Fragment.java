@@ -3,6 +3,7 @@ package com.dy.ustudyonline.Module.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.dy.studyonline.R;
 import com.dy.ustudyonline.Adapter.PlayTab3RecAdapter;
 import com.dy.ustudyonline.Adapter.PlayTab4RecAdapter;
 import com.dy.ustudyonline.Base.BaseFragment;
+import com.dy.ustudyonline.Module.activities.EvaluateListActivity;
 import com.dy.ustudyonline.Module.activities.MainActivity;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.PlayDataTab3Item;
@@ -51,7 +53,9 @@ public class PlayTab4Fragment extends BaseFragment {
 
     @OnClick(R.id.dowall)
     public void goAll(){
-
+        Intent it=new Intent(getActivity(),EvaluateListActivity.class);
+        it.putExtra("courseTerraceId",courseTerraceId);
+        startActivity(it);
     }
 
     @BindView(R.id.num)

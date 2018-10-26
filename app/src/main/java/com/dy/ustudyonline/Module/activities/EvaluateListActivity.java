@@ -15,15 +15,15 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dy.studyonline.R;
+import com.dy.ustudyonline.Adapter.EvaluateListRecAdapter;
 import com.dy.ustudyonline.Adapter.InformationRecAdapter;
-import com.dy.ustudyonline.Adapter.Tab2RecAdapter;
 import com.dy.ustudyonline.Base.BaseActivity;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
-import com.dy.ustudyonline.Module.entity.DataTab2;
 import com.dy.ustudyonline.Module.entity.DataTab4Item;
+import com.dy.ustudyonline.Module.entity.EvaluateItem;
 import com.dy.ustudyonline.Net.RetrofitHelper;
-import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class InformationActivity extends BaseActivity {
+public class EvaluateListActivity extends BaseActivity {
 
     @BindView(R.id.imgLeft)
     ImageView imgLeft;
@@ -45,16 +45,23 @@ public class InformationActivity extends BaseActivity {
     @BindView(R.id.title)
     TextView apptitle;
 
-    List<DataTab4Item> datas=new ArrayList<>();
-    InformationRecAdapter adapter;
-
+    List<EvaluateItem> datas=new ArrayList<>();
+    EvaluateListRecAdapter adapter;
+    @OnClick(R.id.tip)
+    public void jump(){
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            datas.clear();
+            loadData();
+        });
+    }
     @BindView(R.id.swipe_refresh_layout)SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recyclerview)RecyclerView recyclerView;
     @BindView(R.id.tip)RelativeLayout tip;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_infromation;
+        return R.layout.activity_evaluate;
     }
 
     @Override
@@ -67,28 +74,29 @@ public class InformationActivity extends BaseActivity {
 
     @SuppressLint("CheckResult")
     public void loadData() {
-        RetrofitHelper.gethomePageTab4API()
-                .moreNews(getIntent().getStringExtra("typeId"))
+        RetrofitHelper.getPlayAPI()
+                .peCommentList(getIntent().getStringExtra("courseTerraceId"))
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bean -> {
                     mSwipeRefreshLayout.setRefreshing(false);
                     String a=bean.string();
+                    //{"message":"获取全部评价成功","count":0,"state":"0000","commentList":[]}
                     ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
                     String state = apiMsg.getState();
                     switch (state){
                         case "0000":
-                            JSONArray array=JSON.parseArray(apiMsg.getResultInfo());
+                            JSONObject object= JSON.parseObject(a);
+                            JSONArray array=object.getJSONArray("commentList");
                             int size=array.size();
                             if(size>0){
                                 tip.setVisibility(View.GONE);
                                 for(int i=0;i<size;i++){
-                                    DataTab4Item item=JSON.parseObject(array.get(i).toString(),DataTab4Item.class);
+                                    EvaluateItem item=JSON.parseObject(array.get(i).toString(),EvaluateItem.class);
                                     datas.add(item);
                                 }
                                 adapter.notifyDataSetChanged();
-
                             }else{
                                 tip.setVisibility(View.VISIBLE);
                             }
@@ -111,11 +119,11 @@ public class InformationActivity extends BaseActivity {
     protected void initRecyclerView() {
         //去掉recyclerView动画处理闪屏
         ((SimpleItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        adapter=new InformationRecAdapter(datas,this);
-        adapter.setOnItemClickListener(new InformationRecAdapter.OnItemClickListener() {
+        adapter=new EvaluateListRecAdapter(datas,this);
+        adapter.setOnItemClickListener(new EvaluateListRecAdapter.OnItemClickListener() {
             @Override
             public void onClick(String id,String title) {
-                getNewsData(id,title);
+
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -139,41 +147,12 @@ public class InformationActivity extends BaseActivity {
         });
     }
     private void initWidget() {
-        apptitle.setText(getIntent().getStringExtra("typeName"));
+        apptitle.setText("全部评价");
         apptitle.setTextColor(Color.WHITE);
         imgLeft.setImageResource(R.drawable.back);
     }
 
-    @SuppressLint("CheckResult")
-    public void getNewsData(String id,String title){
-        RetrofitHelper.gethomePageTab4API()
-                .readNews(id)
-                .compose(this.bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(bean -> {
-                    String a=bean.string();
-                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
-                    String state = apiMsg.getState();
-                    switch (state){
-                        case "0000":
-                            Intent intent=new Intent(InformationActivity.this, NewsDetailActivity.class);
-                            intent.putExtra("NewsResult",apiMsg.getResultInfo());
-                            intent.putExtra("NewsTitle",title);
-                            startActivity(intent);
-                            break;
-                        case "-1":
-                        case "-2":
-                        default:
-                            ToastUtil.ShortToast(apiMsg.getMessage());
-                            break;
-                    }
 
-                }, throwable -> {
-
-                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
-                });
-    }
 }
 
 
