@@ -101,7 +101,6 @@ public class RetrofitHelper {
    * 初始化OKHttpClient,设置缓存,设置超时时间,设置打印日志,设置UA拦截器
    */
   private static void initOkHttpClient() {
-
     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
     //StatusInterceptor statusInterceptor=new StatusInterceptor();
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -187,3 +186,4 @@ public class RetrofitHelper {
     }
   }
 }
+

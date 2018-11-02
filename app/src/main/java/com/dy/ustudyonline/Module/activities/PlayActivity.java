@@ -266,7 +266,7 @@ public class PlayActivity extends BasePlayerActivity {
         detailPlayer.getBackButton().setVisibility(View.GONE);
         //内置封面可参考SampleCoverVideo
         ImageView imageView = new ImageView(this);
-        loadCover(imageView, "");
+        loadCover(imageView, url);
         return new GSYVideoOptionBuilder()
                 .setThumbImageView(imageView)
                 .setUrl(url)
