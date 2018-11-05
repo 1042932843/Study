@@ -217,6 +217,8 @@ public class PlayActivity extends BasePlayerActivity {
         }
         titleT=current.getChapter_name();
         initVideoBuilderMode();
+        detailPlayer.startPlayLogic();
+
         //detailPlayer.seekTo();
     }
 
@@ -266,7 +268,7 @@ public class PlayActivity extends BasePlayerActivity {
         detailPlayer.getBackButton().setVisibility(View.GONE);
         //内置封面可参考SampleCoverVideo
         ImageView imageView = new ImageView(this);
-        loadCover(imageView, url);
+        loadCover(imageView, "");
         return new GSYVideoOptionBuilder()
                 .setThumbImageView(imageView)
                 .setUrl(url)

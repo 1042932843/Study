@@ -286,7 +286,7 @@ public class HomePageTab1Fragment extends BaseFragment {
                             coursePoints="学分银行："+coursePoints;
                             haveLearn="已获学时："+haveLearn;
                             terraceNameTv.setText(terraceName);
-                            realNameTv.setText(realName);
+                            realNameTv.setText(PreferenceUtil.getStringPRIVATE("realName","未登录")+"学员");
                             haveLearnTv.setText(haveLearn);
                             coursePointsTv.setText(coursePoints);
                             //ultraPagerAdapter.notifyData(dataTab1.getAdList());
@@ -376,7 +376,7 @@ public class HomePageTab1Fragment extends BaseFragment {
                                 tip.setVisibility(View.GONE);
                             }
 
-                            ToastUtil.ShortToast("加载成功");
+                            //ToastUtil.ShortToast("加载成功");
                             break;
                         case "-1":
                         case "-2":

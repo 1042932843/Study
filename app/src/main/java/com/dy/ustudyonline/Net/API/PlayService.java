@@ -22,7 +22,7 @@ public interface PlayService {
                                               @Field("rank") int rank,
                                               @Field("courseTerraceId") String courseTerraceId,
                                               @Field("comment") String comment);
-    @POST("appCourse/peCommentList.xhtml")
+    @POST("appCourse/rkCommentList.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> peCommentList(@Field("courseTerraceId") String userId);
 
@@ -47,4 +47,10 @@ public interface PlayService {
     @POST("appCourse/qesCommentList.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> qesCommentList(@Field("qesId") String qesTitle);
+
+    @POST("appCourse/qesClick.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> qesClick(@Field("qesId") String qesTitle,
+                                      @Field("userId") String userId,
+                                      @Field("click") int click);
 }

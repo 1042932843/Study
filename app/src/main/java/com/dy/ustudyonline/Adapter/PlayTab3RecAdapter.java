@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Module.entity.PlayDataTab3Item;
+import com.dy.ustudyonline.Utils.ToastUtil;
 
 import java.util.List;
 
@@ -61,19 +62,31 @@ public class PlayTab3RecAdapter extends RecyclerView.Adapter<PlayTab3RecAdapter.
             });
 
         }
+        holder.re.setText("回复"+"(" +home.get(position).getAnsCount()+")");
         holder.re.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemClickListener.onReClick(home.get(position));
             }
         });
-        holder.zan.setVisibility(View.GONE);
+        int count=Integer.parseInt(home.get(position).getClickCount());
+        holder.zan.setVisibility(View.VISIBLE);
+        boolean iszn=home.get(position).isZaned();
+        if(iszn){
+            holder.zan.setText("顶"+"(" +count+")");
+            holder.zan.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+        }else{
+            holder.zan.setText("顶"+"(" +count+")");
+
+        }
+
         holder.zan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onZanClick();
+                onItemClickListener.onZanClick(home.get(position),position);
             }
         });
+
 
     }
 
@@ -101,7 +114,7 @@ public class PlayTab3RecAdapter extends RecyclerView.Adapter<PlayTab3RecAdapter.
     OnItemClickListener onItemClickListener;
     public interface OnItemClickListener{
         void onReClick(PlayDataTab3Item item);
-        void onZanClick();
+        void onZanClick(PlayDataTab3Item item,int p);
     }
     public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
         this.onItemClickListener=onItemClickListener;

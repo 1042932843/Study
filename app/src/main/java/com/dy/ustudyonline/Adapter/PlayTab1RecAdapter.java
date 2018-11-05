@@ -93,7 +93,7 @@ public class PlayTab1RecAdapter extends RecyclerView.Adapter<PlayTab1RecAdapter.
                         //    设置Title的内容
                         builder.setTitle("U学");
                         //    设置Content来显示一个信息
-                        builder.setMessage("需要删除吗？");
+                        builder.setMessage("需要删除此章节的本地视频文件吗？");
                         //    设置一个PositiveButton
                         builder.setPositiveButton("确定", new DialogInterface.OnClickListener(){
                             @Override

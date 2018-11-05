@@ -330,11 +330,16 @@ public class MainActivity extends BaseActivity {
         initBottomNavigationBar();
         initFragments();
         ver.setHint("版本号 "+DuskyApp.getInstance().getAppVersionName(this));
+        LoadData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         name.setText(PreferenceUtil.getStringPRIVATE("realName","未登录"));
         if(!TextUtils.isEmpty(PreferenceUtil.getStringPRIVATE("imageUrl",""))){
             Glide.with(MainActivity.this).load(PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
         }
-        LoadData();
     }
 
     @SuppressLint("CheckResult")

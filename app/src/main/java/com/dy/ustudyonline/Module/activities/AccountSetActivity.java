@@ -21,10 +21,14 @@ import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.dy.ustudyonline.Module.activities.MainActivity.refreshData;
 
 
 public class AccountSetActivity extends BaseActivity {
@@ -114,6 +118,8 @@ public class AccountSetActivity extends BaseActivity {
                             String state = apiMsg.getState();
                             switch (state){
                                 case "0000":
+                                    PreferenceUtil.putStringPRIVATE("realName",REALNAME);
+                                    EventBus.getDefault().post(refreshData);
                                     ToastUtil.ShortToast(apiMsg.getMessage());
                                     break;
                                 case "-1":

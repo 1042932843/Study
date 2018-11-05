@@ -63,4 +63,33 @@ public class PlayDataTab3Item implements Serializable {
     String userName;
     String comment;
     String qesId;
+
+    public String getClickCount() {
+        return clickCount;
+    }
+
+    public void setClickCount(String clickCount) {
+        this.clickCount = clickCount;
+    }
+
+    public String getAnsCount() {
+        return ansCount;
+    }
+
+    public void setAnsCount(String ansCount) {
+        this.ansCount = ansCount;
+    }
+
+    String clickCount;
+    String ansCount;
+
+    public boolean isZaned() {
+        return isZaned;
+    }
+
+    public void setZaned(boolean zaned) {
+        isZaned = zaned;
+    }
+
+    boolean isZaned;
 }

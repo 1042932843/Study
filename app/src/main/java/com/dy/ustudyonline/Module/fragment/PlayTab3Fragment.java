@@ -105,8 +105,8 @@ public class PlayTab3Fragment extends BaseFragment {
             }
 
             @Override
-            public void onZanClick() {
-
+            public void onZanClick(PlayDataTab3Item item,int p) {
+                zan(item,p);
             }
 
         });
@@ -118,6 +118,55 @@ public class PlayTab3Fragment extends BaseFragment {
 
     }
 
+
+    int click=1;
+    @SuppressLint("CheckResult")
+    public void zan(PlayDataTab3Item item,int p){
+        RetrofitHelper.getPlayAPI()
+                .qesClick(item.getQesId(),PreferenceUtil.getStringPRIVATE("id",""),click)
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bean -> {
+                    String a=bean.string();
+                    ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                    String state = apiMsg.getState();
+                    switch (state){
+                        case "0000":
+
+                            if(apiMsg.getMessage().equals("点赞成功")){
+                               int count= Integer.parseInt(item.getClickCount())+1;
+                                item.setClickCount(count+"");
+                                adapter.notifyItemChanged(p);
+                                click=0;
+                                ToastUtil.ShortToast(apiMsg.getMessage());
+                            }
+                            if(apiMsg.getMessage().equals("只能点赞一次")){
+                                click=0;
+                            }
+                            if(apiMsg.getMessage().equals("你已取消点赞")){
+                                click=1;
+                            }
+                            if(apiMsg.getMessage().equals("取消点赞成功")){
+                                int count= Integer.parseInt(item.getClickCount())-1;
+                                item.setClickCount(count+"");
+                                adapter.notifyItemChanged(p);
+                                click=1;
+                                ToastUtil.ShortToast(apiMsg.getMessage());
+                            }
+
+                            break;
+                        case "-1":
+                        case "-2":
+                        default:
+                            ToastUtil.ShortToast(apiMsg.getMessage());
+                            break;
+                    }
+                }, throwable -> {
+                    ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                });
+
+    }
 
     @Override
     public void lazyLoad(){
