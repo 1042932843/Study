@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,9 +27,9 @@ public class ChoiceGroup extends LinearLayout {
 
     private String currentValue = "";//当前按钮值
 
-    private List<String> values = new ArrayList<>();//按钮文字列表
+    private List<String> values;//按钮文字列表
 
-    private Map<Integer, Button> map = new HashMap<>();//按钮map
+    private Map<Integer, TextView> map = new HashMap<>();//按钮map
 
     public ChoiceGroup(Context context){
         super(context);
@@ -75,6 +76,10 @@ public class ChoiceGroup extends LinearLayout {
     }
     //初始化容器所有视图
     public void setView(final Context context){
+        if(values==null){
+            return;
+        }
+        removeAllViews();
         int size = values.size();
         int row = size/column;
         int leftSize = size%column;
@@ -84,17 +89,18 @@ public class ChoiceGroup extends LinearLayout {
             linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
             for(int j=0;j<column;j++){
                 final MyRadio button = new MyRadio(context);
-                button.setGravity(Gravity.CENTER);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1);
-                layoutParams.setMargins(8, 8, 8, 8);
+                layoutParams.setMargins(16, 8, 16, 8);
                 button.setLayoutParams(layoutParams);
                 button.setText(values.get(column * i + j));
+                button.setTag(j);
                 currentIndex = column * i + j;
                 button.setOnValueChangedListner(new MyRadio.OnValueChangedListner() {
                     @Override
                     public void OnValueChanged(String value) {
+                        onItemClickListener.onClick(Integer.parseInt(button.getTag().toString()));
                         setCurrentValue(value);
-                        clearSelected(currentIndex);
+                        clearSelected();
                     }
                 });
                 map.put(column * i + j,button);
@@ -118,8 +124,9 @@ public class ChoiceGroup extends LinearLayout {
                     button.setOnValueChangedListner(new MyRadio.OnValueChangedListner() {
                         @Override
                         public void OnValueChanged(String value) {
+                            onItemClickListener.onClick(Integer.parseInt(button.getTag().toString()));
                             setCurrentValue(value);
-                            clearSelected(currentIndex);
+                            clearSelected();
                         }
                     });
                     map.put(size - leftSize + m,button);
@@ -141,12 +148,21 @@ public class ChoiceGroup extends LinearLayout {
     }
 
     //清除所有选择
-    private void clearSelected(int Index){
+    private void clearSelected(){
         System.out.println("length = "+map.size());
         for(int index = 0;index < map.size(); index ++){
 
             ((MyRadio)map.get(index)).setTouch(1);
         }
+    }
+
+    OnItemClickListener onItemClickListener;
+    public interface OnItemClickListener{
+        void onClick(int position);
+        void onLongClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
+        this.onItemClickListener=onItemClickListener;
     }
 
 }

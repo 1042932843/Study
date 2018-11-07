@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,11 +21,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dy.studyonline.R;
 import com.dy.ustudyonline.Adapter.EvaluateListRecAdapter;
+import com.dy.ustudyonline.Adapter.FragmentAdapter;
 import com.dy.ustudyonline.Adapter.InformationRecAdapter;
 import com.dy.ustudyonline.Base.BaseActivity;
+import com.dy.ustudyonline.Design.MyRadioBt.ChoiceGroup;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.DataTab4Item;
 import com.dy.ustudyonline.Module.entity.EvaluateItem;
+import com.dy.ustudyonline.Module.fragment.PlayEvaluteFragment;
 import com.dy.ustudyonline.Net.RetrofitHelper;
 import com.dy.ustudyonline.Utils.ToastUtil;
 
@@ -45,18 +51,24 @@ public class EvaluateListActivity extends BaseActivity {
     @BindView(R.id.title)
     TextView apptitle;
 
-    List<EvaluateItem> datas=new ArrayList<>();
-    EvaluateListRecAdapter adapter;
+    @BindView(R.id.Rate)
+    TextView Rate;
+
+    List<String> val=new ArrayList<>();
+
+    @BindView(R.id.choiceGroup)
+    ChoiceGroup choiceGroup;
+
     @OnClick(R.id.tip)
     public void jump(){
         mSwipeRefreshLayout.post(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
-            datas.clear();
             loadData();
         });
     }
     @BindView(R.id.swipe_refresh_layout)SwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.recyclerview)RecyclerView recyclerView;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
     @BindView(R.id.tip)RelativeLayout tip;
 
     @Override
@@ -67,7 +79,20 @@ public class EvaluateListActivity extends BaseActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         initWidget();
-        initRecyclerView();
+        initRefreshLayout();
+        choiceGroup.setColumn(4);
+        choiceGroup.setValues(val);
+        choiceGroup.setOnItemClickListener(new ChoiceGroup.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                viewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onLongClick(int position) {
+
+            }
+        });
     }
 
 
@@ -82,21 +107,27 @@ public class EvaluateListActivity extends BaseActivity {
                 .subscribe(bean -> {
                     mSwipeRefreshLayout.setRefreshing(false);
                     String a=bean.string();
-                    //{"message":"获取全部评价成功","count":0,"state":"0000","commentList":[]}
+                    //{"gcRate":"92.3076923076923%","message":"获取全部评价成功","count":13,"state":"0000","dcount":0,"mcount":1,"gcount":12}
                     ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
                     String state = apiMsg.getState();
                     switch (state){
                         case "0000":
-                            JSONObject object= JSON.parseObject(a);
-                            JSONArray array=object.getJSONArray("commentList");
-                            int size=array.size();
-                            if(size>0){
-                                tip.setVisibility(View.GONE);
-                                for(int i=0;i<size;i++){
-                                    EvaluateItem item=JSON.parseObject(array.get(i).toString(),EvaluateItem.class);
-                                    datas.add(item);
-                                }
-                                adapter.notifyDataSetChanged();
+                            if("获取全部评价成功".equals(apiMsg.getMessage())){
+                                val.clear();
+                                JSONObject object=JSONObject.parseObject(a);
+                                String rate=object.getString("gcRate");
+                                String count=object.getString("count");
+                                String dcount=object.getString("dcount");
+                                String mcount=object.getString("mcount");
+                                String gcount=object.getString("gcount");
+                                Rate.setText("好评率"+rate);
+                                val.add("全部("+count+")");
+                                val.add("好评("+gcount+")");
+                                val.add("中评("+mcount+")");
+                                val.add("差评("+dcount+")");
+                                choiceGroup.setView(this);
+                                choiceGroup.setInitChecked(0);
+                                initViewPager();
                             }else{
                                 tip.setVisibility(View.VISIBLE);
                             }
@@ -116,33 +147,48 @@ public class EvaluateListActivity extends BaseActivity {
     }
 
 
-    protected void initRecyclerView() {
-        //去掉recyclerView动画处理闪屏
-        ((SimpleItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        adapter=new EvaluateListRecAdapter(datas,this);
-        adapter.setOnItemClickListener(new EvaluateListRecAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(String id,String title) {
 
-            }
-        });
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
 
-        initRefreshLayout();
+
+    protected void initViewPager() {
+
+            List<String> titles = new ArrayList<>();
+            List<Fragment> mFragments = new ArrayList<>();
+            FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), mFragments, titles);
+
+            mFragments.add(PlayEvaluteFragment.newInstance(1));
+            mFragments.add(PlayEvaluteFragment.newInstance(2));
+            mFragments.add(PlayEvaluteFragment.newInstance(3));
+            mFragments.add(PlayEvaluteFragment.newInstance(4));
+            viewPager.setAdapter(adapter);
+
+            viewPager.setOffscreenPageLimit(mFragments.size());
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int i, float v, int i1) {
+
+                }
+
+                @Override
+                public void onPageSelected(int i) {
+                    choiceGroup.setInitChecked(i);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int i) {
+
+                }
+            });
+
+
     }
 
     public void initRefreshLayout() {
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            datas.clear();
-            loadData();
-        });
+        mSwipeRefreshLayout.setOnRefreshListener(this::loadData);
         mSwipeRefreshLayout.post(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
-            datas.clear();
+
             loadData();
         });
     }

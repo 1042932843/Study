@@ -54,22 +54,6 @@ public class EvaluateListRecAdapter extends RecyclerView.Adapter<EvaluateListRec
         }
         // 绑定数据
         holder.title1.setText(home.get(position).getUserName());
-        String rank=home.get(position).getRank();
-        switch (rank){
-            case "0":
-            rank="评价等级：优";
-                break;
-            case "1":
-                rank="评价等级：良";
-                break;
-            case "2":
-                rank="评价等级：中";
-                break;
-            case "3":
-                rank="评价等级：差";
-                break;
-        }
-        holder.rank.setText(rank);
         holder.ts.setText(home.get(position).getTs());
         holder.time1.setText(home.get(position).getComment());
         Glide.with(context).load(home.get(position).getImgUrl()).apply(optionsRoundedCircle).into(holder.userhead);
@@ -93,14 +77,13 @@ public class EvaluateListRecAdapter extends RecyclerView.Adapter<EvaluateListRec
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title1,time1,rank,ts;
+        TextView title1,time1,ts;
         ImageView userhead;
 
         public ViewHolder(View itemView) {
             super(itemView);
             userhead=(ImageView)itemView.findViewById(R.id.user_head) ;
             title1 = (TextView) itemView.findViewById(R.id.title1);
-            rank = (TextView) itemView.findViewById(R.id.rank);
             ts = (TextView) itemView.findViewById(R.id.ts);
             time1=(TextView) itemView.findViewById(R.id.time1);
 

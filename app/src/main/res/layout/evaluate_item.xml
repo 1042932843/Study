@@ -18,8 +18,8 @@
         >
         <ImageView
             android:id="@+id/user_head"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_user_default"
             android:layout_margin="@dimen/dp_2"/>
@@ -33,35 +33,33 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/user_head"
             />
-        
 
 
+        <TextView
+            android:layout_marginTop="@dimen/dp_6"
+            android:id="@+id/ts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:text="2018-10-26"
+            android:textColor="@color/texthint"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            />
 
     </RelativeLayout>
-    <TextView
-        android:layout_marginTop="@dimen/dp_6"
-        android:id="@+id/ts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_12"
-        android:text="2018-10-26"
-        android:textColor="@color/texthint"
-        />
-    <TextView
-        android:layout_marginTop="@dimen/dp_3"
-        android:id="@+id/rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_12"
-        android:text="评价等级：优"
-        android:textColor="@color/texthint"
-        />
 
     <TextView
-        android:layout_marginTop="@dimen/dp_3"
+        android:layout_marginTop="@dimen/dp_8"
         android:id="@+id/time1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_12"
+        android:textSize="@dimen/sp_14"
         android:textColor="@color/textcolor" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/background"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_4"/>
 </LinearLayout>

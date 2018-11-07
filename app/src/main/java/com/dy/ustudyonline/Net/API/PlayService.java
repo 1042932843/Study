@@ -24,6 +24,10 @@ public interface PlayService {
                                               @Field("comment") String comment);
     @POST("appCourse/rkCommentList.xhtml")
     @FormUrlEncoded
+    Observable<ResponseBody> rkCommentList(@Field("courseTerraceId") String userId,@Field("rank") int rank);
+
+    @POST("appCourse/peCommentList.xhtml")
+    @FormUrlEncoded
     Observable<ResponseBody> peCommentList(@Field("courseTerraceId") String userId);
 
     //Tab3
