@@ -16,8 +16,8 @@
         >
         <ImageView
             android:id="@+id/user_head"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_user_default"
             android:layout_margin="@dimen/dp_2"/>
@@ -40,8 +40,8 @@
             android:textSize="@dimen/sp_12"
             android:text="2018-10-26"
             android:textColor="@color/texthint"
-            android:layout_toEndOf="@+id/title1"
-            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             />
 
 

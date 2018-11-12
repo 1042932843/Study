@@ -103,8 +103,9 @@ public class RelistActivity extends BaseActivity {
 
     @SuppressLint("CheckResult")
     public void loadData() {
+        String s= PreferenceUtil.getStringPRIVATE("id", "");
         RetrofitHelper.getPlayAPI()
-                .qesCommentList(item.getQesId())
+                .qesCommentList(item.getQesId(),s)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -117,7 +118,7 @@ public class RelistActivity extends BaseActivity {
                         case "0000":
                             JSONObject object= JSON.parseObject(a);
                             String co=object.getString("count");
-                            count.setText("全部回复 "+co);
+                            count.setText(co+"条回复");
                             JSONArray array=object.getJSONArray("ansMapList");
                             int size=array.size();
                             if(size>0){

@@ -50,7 +50,7 @@ public interface PlayService {
 
     @POST("appCourse/qesCommentList.xhtml")
     @FormUrlEncoded
-    Observable<ResponseBody> qesCommentList(@Field("qesId") String qesTitle);
+    Observable<ResponseBody> qesCommentList(@Field("qesId") String qesTitle,@Field("userId") String userId);
 
     @POST("appCourse/qesClick.xhtml")
     @FormUrlEncoded
