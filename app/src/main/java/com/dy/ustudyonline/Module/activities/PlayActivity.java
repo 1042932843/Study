@@ -220,6 +220,7 @@ public class PlayActivity extends BasePlayerActivity {
         detailPlayer.startPlayLogic();
 
         //detailPlayer.seekTo();
+
     }
 
     @SuppressLint("CheckResult")

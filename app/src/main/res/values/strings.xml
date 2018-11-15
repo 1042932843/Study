@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">U学</string>
+    <string name="app_name">开放U学</string>
     <string name="edit_profile">编辑资料</string>
     <string name="mine">我的</string>
     <string name="homework">作业</string>
@@ -16,7 +16,7 @@
     <string name="newsc">最新课程</string>
     <string name="youlove">猜你喜欢</string>
     <string name="hotc">热门课程</string>
-    <string name="xianxiu">平台先修课</string>
+    <string name="xianxiu">平台先修课</string>i
     <string name="xueli">学历提升</string>
 
     <string name="msg_camera_framework_bug">相机被占用或没有相机权限，请检查</string>

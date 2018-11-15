@@ -51,7 +51,7 @@ public class HomeRecAdapter1 extends RecyclerView.Adapter<HomeRecAdapter1.ViewHo
         // 绑定数据
         holder.name.setText("测试数据");
         holder.content.setText("每天五分钟，写出不一样的代码。高效的啊数据库的撒娇的三大");
-        Glide.with(context).load(R.drawable.banner43x).into(holder.img);
+        //Glide.with(context).load(R.drawable.banner43x).into(holder.img);
         //单独对应类型的设置事件
         if( onItemClickListener!= null){
             holder.itemView.setOnClickListener( new View.OnClickListener() {
