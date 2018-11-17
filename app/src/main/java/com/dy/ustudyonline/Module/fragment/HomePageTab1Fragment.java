@@ -129,7 +129,7 @@ public class HomePageTab1Fragment extends BaseFragment {
     @OnClick(R.id.hotmore)
     public void hotmore(){
         Intent intent=new Intent(getActivity(), Tab1CourseType2Activity.class);
-        intent.putExtra("type","amout");
+        intent.putExtra("type","amount");
         intent.putExtra("courseTypeName","热门课程");
         startActivity(intent);
     }
