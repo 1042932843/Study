@@ -127,6 +127,8 @@ public class CourseType2Activity extends BaseActivity {
                             JSONArray array=JSON.parseArray(apiMsg.getResultInfo());
                             int size=array.size();
                             if(size>0){
+                                Checked.clear();
+                                datas.clear();
                                 tip.setVisibility(View.GONE);
                                 for(int i=0;i<size;i++){
                                     DataTab2Item item=JSON.parseObject(array.get(i).toString(),DataTab2Item.class);
@@ -189,16 +191,12 @@ public class CourseType2Activity extends BaseActivity {
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             textRight.setText("批量选课");
             hide(okl);
-            Checked.clear();
-            datas.clear();
             loadData();
         });
         mSwipeRefreshLayout.post(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
             textRight.setText("批量选课");
             hide(okl);
-            Checked.clear();
-            datas.clear();
             loadData();
         });
     }
@@ -233,8 +231,6 @@ public class CourseType2Activity extends BaseActivity {
                                 mSwipeRefreshLayout.setRefreshing(true);
                                 textRight.setText("批量选课");
                                 hide(okl);
-                                Checked.clear();
-                                datas.clear();
                                 loadData();
                             });
                             break;

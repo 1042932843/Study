@@ -55,7 +55,7 @@ public class CourseTypeActivity extends BaseActivity {
     public void jump(){
         mSwipeRefreshLayout.post(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
-            datas.clear();
+
             loadData();
         });
     }
@@ -77,7 +77,6 @@ public class CourseTypeActivity extends BaseActivity {
     public void initRefreshLayout() {
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            datas.clear();
             loadData();
         });
     }
@@ -126,6 +125,7 @@ public class CourseTypeActivity extends BaseActivity {
                             JSONArray array=JSON.parseArray(apiMsg.getResultInfo());
                             int size=array.size();
                             if(size>0){
+                                datas.clear();
                                 tip.setVisibility(View.GONE);
                                 for(int i=0;i<size;i++){
                                     DataTab2 item=JSON.parseObject(array.get(i).toString(),DataTab2.class);

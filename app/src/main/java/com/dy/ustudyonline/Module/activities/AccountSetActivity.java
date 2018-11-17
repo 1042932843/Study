@@ -42,6 +42,7 @@ public class AccountSetActivity extends BaseActivity {
     }
     @BindView(R.id.textRight)
     TextView textRight;
+    //接口设计太蠢。
     @SuppressLint("CheckResult")
     @OnClick(R.id.textRight)
     public void save(){
