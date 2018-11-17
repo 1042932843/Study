@@ -54,6 +54,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name="com.dy.ustudyonline.Module.activities.PlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.dy.ustudyonline.zxing.android.CaptureActivity"

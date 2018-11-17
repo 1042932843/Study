@@ -114,7 +114,6 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
     @SuppressLint("CheckResult")
     public void logout(){
         //JPushInterface.cleanTags(this,1042032943);
-        PreferenceUtil.resetPrivate();
         RetrofitHelper.getLoginRegisterAPI()
                 .userLoginOut(PreferenceUtil.getStringPRIVATE("id",""))
                 .subscribeOn(Schedulers.io())
@@ -126,6 +125,8 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
                     switch (state){
                         case "0000":
                             ToastUtil.ShortToast("已退出，请重新登录");
+                            PreferenceUtil.resetPrivate();
+
                             break;
                         case "-1":
                         case "-2":
@@ -136,6 +137,7 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
                 }, throwable -> {
                     ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
                 });
+
 
     }
     /**

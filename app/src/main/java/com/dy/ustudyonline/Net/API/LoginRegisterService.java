@@ -22,7 +22,7 @@ public interface LoginRegisterService {
                                    @Field("passWord") String password);
 
 
-    @POST("appOrdinaryUser/userLoginOut.xhtmll")
+    @POST("appOrdinaryUser/userLoginOut.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> userLoginOut(@Field("userId") String userId);
 

@@ -40,6 +40,20 @@ public interface AccountSetService {
     Observable<ResponseBody> updateAddress(@Field("userId") String userId,
                                           @Field("address") String address);
 
+    @POST("appOrdinaryUser/additionalUser.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> updatePolitical(@Field("userId") String userId,
+                                          @Field("politicalStatus") String school);
+    @POST("appOrdinaryUser/additionalUser.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> updateEducation(@Field("userId") String userId,
+                                             @Field("education") String school);
+
+    @POST("appOrdinaryUser/additionalUser.xhtml")
+    @FormUrlEncoded
+    Observable<ResponseBody> updateSex(@Field("userId") String userId,
+                                             @Field("sex") String sex);
+
     @POST("appOrdinaryUser/updateSchool.xhtml")
     @FormUrlEncoded
     Observable<ResponseBody> updateSchool(@Field("userId") String userId,

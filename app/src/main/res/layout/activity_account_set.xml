@@ -33,7 +33,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_20"
             android:drawablePadding="@dimen/dp_10"
-            android:text="用户昵称"
+            android:text="帐号"
             />
 
         <EditText
@@ -180,7 +180,7 @@
             />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/sex"
             android:layout_width="@dimen/dp_220"
             android:layout_height="match_parent"
@@ -246,7 +246,7 @@
             />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/level"
             android:layout_width="@dimen/dp_220"
             android:layout_height="match_parent"
@@ -352,7 +352,7 @@
             />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/education"
             android:layout_width="@dimen/dp_220"
             android:layout_height="match_parent"

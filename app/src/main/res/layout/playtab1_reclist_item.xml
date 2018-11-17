@@ -14,13 +14,14 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_8"
         android:paddingRight="@dimen/dp_8"
-        android:gravity="center"
+        android:gravity="center|left"
         android:layout_centerVertical="true"
         android:text="@string/app_name"
+        android:layout_toStartOf="@+id/cProgressButton"
         />
 
     <com.jiang.android.pbutton.CProgressButton
@@ -36,6 +37,7 @@
         app:drawable_xml="@drawable/bounder"
         android:textSize="8sp"
         android:textColor="@color/colorPrimary"
+        android:layout_centerVertical="true"
         android:id="@+id/cProgressButton"
         />
 
