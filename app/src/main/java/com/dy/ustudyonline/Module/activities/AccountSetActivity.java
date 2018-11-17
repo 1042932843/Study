@@ -18,6 +18,8 @@ import com.dy.ustudyonline.Base.BaseActivity;
 import com.dy.ustudyonline.Module.entity.ApiMsg;
 import com.dy.ustudyonline.Module.entity.User;
 import com.dy.ustudyonline.Net.RetrofitHelper;
+import com.dy.ustudyonline.Utils.CommonUtil;
+import com.dy.ustudyonline.Utils.IDCardValidate;
 import com.dy.ustudyonline.Utils.PreferenceUtil;
 import com.dy.ustudyonline.Utils.ToastUtil;
 
@@ -48,7 +50,7 @@ public class AccountSetActivity extends BaseActivity {
     public void save(){
         String USERNAME=username.getText().toString();
         if(TextUtils.isEmpty(USERNAME)){
-            ToastUtil.ShortToast("用户昵称不能为空");
+            ToastUtil.ShortToast("用户姓名不能为空");
             return;
         }
         username.clearFocus();
@@ -59,14 +61,25 @@ public class AccountSetActivity extends BaseActivity {
         }
         name.clearFocus();
         String IDCARD=idcard.getText().toString();
+
         if(TextUtils.isEmpty(IDCARD)){
             ToastUtil.ShortToast("证件号码不能为空");
+            return;
+        }
+        idcard.clearFocus();
+        if(!CommonUtil.personIdValidation(IDCARD)){
+            ToastUtil.ShortToast("证件号码不符合规则");
             return;
         }
         idcard.clearFocus();
         String PHONE=phone.getText().toString();
         if(TextUtils.isEmpty(PHONE)){
             ToastUtil.ShortToast("手机号码不能为空");
+            return;
+        }
+        phone.clearFocus();
+        if(!CommonUtil.isMobileNO(PHONE)){
+            ToastUtil.ShortToast("手机号码不符合规则");
             return;
         }
         phone.clearFocus();
@@ -207,6 +220,32 @@ public class AccountSetActivity extends BaseActivity {
                             ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
                         });
             }
+            if(!LEVEL.equals(user.getPoliticalStatus())){
+                RetrofitHelper.getAccountSetAPI()
+                        .updatePolitical(PreferenceUtil.getStringPRIVATE("id",""),LEVEL)
+                        .compose(this.bindToLifecycle())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(bean -> {
+                            String a=bean.string();
+                            ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                            String state = apiMsg.getState();
+                            switch (state){
+                                case "0000":
+                                    ToastUtil.ShortToast(apiMsg.getMessage());
+                                    break;
+                                case "-1":
+                                case "-2":
+                                default:
+                                    ToastUtil.ShortToast(apiMsg.getMessage());
+                                    break;
+                            }
+                        }, throwable -> {
+                            ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                        });
+            }
+
+
             if(!SCHOOL.equals(user.getSchool())){
                 RetrofitHelper.getAccountSetAPI()
                         .updateSchool(PreferenceUtil.getStringPRIVATE("id",""),SCHOOL)
@@ -234,6 +273,56 @@ public class AccountSetActivity extends BaseActivity {
             if(!MAJOR.equals(user.getMajor())){
                 RetrofitHelper.getAccountSetAPI()
                         .updateMajor(PreferenceUtil.getStringPRIVATE("id",""),MAJOR)
+                        .compose(this.bindToLifecycle())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(bean -> {
+                            String a=bean.string();
+                            ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                            String state = apiMsg.getState();
+                            switch (state){
+                                case "0000":
+                                    ToastUtil.ShortToast(apiMsg.getMessage());
+                                    break;
+                                case "-1":
+                                case "-2":
+                                default:
+                                    ToastUtil.ShortToast(apiMsg.getMessage());
+                                    break;
+                            }
+                        }, throwable -> {
+                            ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                        });
+            }
+
+            if(!EDUCATION.equals(user.getEducation())){
+                RetrofitHelper.getAccountSetAPI()
+                        .updateEducation(PreferenceUtil.getStringPRIVATE("id",""),EDUCATION)
+                        .compose(this.bindToLifecycle())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(bean -> {
+                            String a=bean.string();
+                            ApiMsg apiMsg = JSON.parseObject(a,ApiMsg.class);
+                            String state = apiMsg.getState();
+                            switch (state){
+                                case "0000":
+                                    ToastUtil.ShortToast(apiMsg.getMessage());
+                                    break;
+                                case "-1":
+                                case "-2":
+                                default:
+                                    ToastUtil.ShortToast(apiMsg.getMessage());
+                                    break;
+                            }
+                        }, throwable -> {
+                            ToastUtil.ShortToast("返回错误，请确认网络正常或服务器正常");
+                        });
+            }
+
+            if(!SEX.equals(user.getSex())){
+                RetrofitHelper.getAccountSetAPI()
+                        .updateSex(PreferenceUtil.getStringPRIVATE("id",""),SEX)
                         .compose(this.bindToLifecycle())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
