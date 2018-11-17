@@ -58,6 +58,15 @@ public class PwResetActivity extends BaseActivity {
             tip.setText("请输入新密码");
             return;
         }
+
+        if(newpw.length()<6){
+            tip.setText("密码太短，请至少输入6位密码");
+            return;
+        }
+        if(newpw.length()>20){
+            tip.setText("密码太长，请输入20位以内密码");
+            return;
+        }
         if(TextUtils.isEmpty(newpws)){
             tip.setText("请重复密码加以确认");
             return;
