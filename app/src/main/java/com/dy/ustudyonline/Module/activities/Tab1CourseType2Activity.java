@@ -76,7 +76,12 @@ public class Tab1CourseType2Activity extends BaseActivity {
         int size=datas.size();
         if("批量选课".equals(textRight.getText())){
             for (int i=0;i<size;i++){
-                datas.get(i).setShow(true);
+                if ("0".equals(datas.get(i).getIsSelect())){
+                    datas.get(i).setShow(false);
+                }else{
+                    datas.get(i).setShow(true);
+                }
+
             }
             adapter.notifyDataSetChanged();
             textRight.setText("取消");
