@@ -3,6 +3,8 @@ package com.dy.ustudyonline.Module.activities;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -60,7 +62,9 @@ public class NewsDetailActivity extends BaseActivity {
         newstitle.setText(getIntent().getStringExtra("NewsTitle"));
         com.alibaba.fastjson.JSONObject object=JSON.parseObject(getIntent().getStringExtra("NewsResult"));
         String detail=object.getString("newsDetail");
-        news.setText(detail);
+
+        Spanned result = Html.fromHtml(detail);
+        news.setText(result);
         String img=object.getString("newsImg");
         if(TextUtils.isEmpty(img)){
             imageView.setVisibility(View.GONE);
