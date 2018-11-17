@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.dy.studyonline.R;
@@ -36,6 +39,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -73,7 +78,7 @@ public class PlayTab4Fragment extends BaseFragment {
         submit(com);
     }
     ProgressDialog pdialog;
-    int rank=0;
+    int rank=1;
     String courseTerraceId;
     @SuppressLint("CheckResult")
     private void submit(String c) {
@@ -143,6 +148,31 @@ public class PlayTab4Fragment extends BaseFragment {
     @Override
     public void finishCreateView(Bundle state) {
         //initRecyclerView();
+
+
+        //完美解决输入框中不能输入的非法字符
+
+        InputFilter inputFilter=new InputFilter() {
+
+            Pattern pattern = Pattern.compile("[^a-zA-Z0-9\\u4E00-\\u9FA5_,.?!:;…~_\\-\"\"/@*+'()<>{}/[/]()<>{}\\[\\]=%&$|\\/♀♂#¥£¢€\"^` ，。？！：；……～“”、“（）”、（——）‘’＠‘·’＆＊＃《》￥《〈〉》〈＄〉［］￡［］｛｝｛｝￠【】【】％〖〗〖〗／〔〕〔〕＼『』『』＾「」「」｜﹁﹂｀．]");
+
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                Matcher matcher=  pattern.matcher(charSequence);
+                if(!matcher.find()){
+                    return null;
+                }else{
+                    Toast.makeText(getContext(), "不支持的字符", Toast.LENGTH_SHORT).show();
+                    return "";
+                }
+
+            }
+        };
+
+//调用
+        editText.setFilters(new InputFilter[]{inputFilter});
+
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -164,16 +194,16 @@ public class PlayTab4Fragment extends BaseFragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.you:
-                        rank=0;
-                        break;
-                    case R.id.liang:
                         rank=1;
                         break;
-                    case R.id.zhong:
+                    case R.id.liang:
                         rank=2;
                         break;
-                    case R.id.cha:
+                    case R.id.zhong:
                         rank=3;
+                        break;
+                    case R.id.cha:
+                        rank=4;
                         break;
                 }
 
