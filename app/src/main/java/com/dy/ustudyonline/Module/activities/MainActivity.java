@@ -541,7 +541,10 @@ public class MainActivity extends BaseActivity {
                                     switch (state){
                                         case "0000":
                                             ToastUtil.ShortToast(apiMsg.getMessage());
-                                            PreferenceUtil.putStringPRIVATE("imageUrl",apiMsg.getImgPath());
+                                            PreferenceUtil.putStringPRIVATE("imageUrl",ApiConstants.Base_URL+apiMsg.getImgPath());
+                                            if(!TextUtils.isEmpty(PreferenceUtil.getStringPRIVATE("imageUrl",""))){
+                                                Glide.with(MainActivity.this).load(PreferenceUtil.getStringPRIVATE("imageUrl","")).apply(optionsRoundedCircle).into(userhead);
+                                            }
                                             break;
                                         case "-1":
                                         case "-2":
