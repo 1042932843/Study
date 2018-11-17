@@ -107,7 +107,8 @@
                android:layout_height="wrap_content"
                android:text="忘记密码"
                android:textColor="@color/textcolor"
-               android:gravity="center"/>
+               android:gravity="center"
+               android:visibility="gone"/>
 
 
         </LinearLayout>
